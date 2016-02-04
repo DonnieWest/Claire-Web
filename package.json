@@ -1,7 +1,11 @@
 {
   "private": true,
   "engines": {
-    "node": ">=0.12.0"
+    "node": ">=5.5.0"
+  },
+  "scripts": {
+   "start": "gulp serve",
+   "postinstall": "bower install"
   },
   "devDependencies": {
     "babel-core": "^6.4.0",
