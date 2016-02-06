@@ -1,5 +1,5 @@
 console.log('\'Hello \'Hello!');
-
+var apiDomainURL = "https://frank.treasury.love"
 var profile_firstname = localStorage.getItem("profile_firstname");
 var linked_ID = localStorage.getItem("linked_profile_id");
 var linked_FirstName = localStorage.getItem("linked_profile_firstname");
@@ -30,7 +30,7 @@ $('#profile').submit(function() {
   console.log(dat);
   $.ajax({
     type: $(this).attr('method'),
-    url: $(this).attr('action'), //submits it to the given url of the form
+    url: apiDomainURL + $(this).attr('action'), //submits it to the given url of the form
     data: dat,
     headers: {
       Accept: "application/json",
@@ -57,7 +57,7 @@ $('#linked-profile-form').submit(function() {
   debugger;
   $.ajax({
     type: $(this).attr('method'),
-    url: $(this).attr('action') + email,
+    url: apiDomainURL + $(this).attr('action') + email,
     headers: {
       Accept: "application/json"
     },
@@ -93,7 +93,7 @@ $('#love-bank').submit(function() {
 
   $.ajax({
     type: "POST",
-    url: $(this).attr('action'), //submits it to the given url of the form
+    url: apiDomainURL + $(this).attr('action'), //submits it to the given url of the form
     data: dat,
     headers: {
       Accept: "application/json",
@@ -126,7 +126,7 @@ $('#mood').submit(function() {
 
   $.ajax({
     type: $(this).attr('method'),
-    url: $(this).attr('action'), //submits it to the given url of the form
+    url: apiDomainURL + $(this).attr('action'), //submits it to the given url of the form
     data: dat,
     headers: {
       Accept: "application/json",
@@ -172,7 +172,7 @@ $('#entry').submit(function() {
 
   $.ajax({
     type: $(this).attr('method'),
-    url: $(this).attr('action'), //submits it to the given url of the form
+    url: apiDomainURL + $(this).attr('action'), //submits it to the given url of the form
     data: dat,
     headers: {
       Accept: "application/json",
