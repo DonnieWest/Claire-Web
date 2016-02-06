@@ -39,19 +39,28 @@
         <h3 class="text-muted" id="profile-name">Mood Entry</h3>
       </div>
       <div class="row marketing">
-        <div class="col-lg-6">
-          <h2>Mood</h2>
-          <form id="mood" action="http://localhost:3000/moods" method="post" accept-charset="utf-8">
-            <input type="radio" name="mood_rating" value="1">One<br>
-            <input type="radio" name="mood_rating" value="2">Two<br>
-            <input type="radio" name="mood_rating" value="3">Three<br>
-            <input type="radio" name="mood_rating" value="4">Four<br>
-            <input type="radio" name="mood_rating" value="5">Five<br>
-            <input type="text" name="description">
-            <p><input type="submit" value="Save"></p>
-          </form>
-          <div id="message"></div>
-        </div>
+        <h2>Mood</h2>
+        <form id="mood" action="http://localhost:3000/moods" method="post" accept-charset="utf-8" class="form-horizontal" role="form">
+
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Mood Rating</label>
+            <div class="col-sm-8">
+              <label class="radio-inline"><input type="radio" name="mood_rating" value="1">One</label>
+              <label class="radio-inline"><input type="radio" name="mood_rating" value="2">Two</label>
+              <label class="radio-inline"><input type="radio" name="mood_rating" value="3">Three</label>
+              <label class="radio-inline"><input type="radio" name="mood_rating" value="4">Four</label>
+              <label class="radio-inline"><input type="radio" name="mood_rating" value="5">Five</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleTextarea">Notes about how you feel</label>
+            <textarea class="form-control" type="text" name="description" rows="3"></textarea>
+          </div>
+
+          <input class="btn btn-default" type="submit" value="Save">
+        </form>
+        <div id="message"></div>
       </div>
 
       <div class="footer">
