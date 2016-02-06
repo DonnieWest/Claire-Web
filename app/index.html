@@ -27,7 +27,7 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="/">Entry</a></li>
+          <li class="active"><a href="/">Deposit</a></li>
           <li><a href="/Mood.html">Mood</a></li>
           <li><a href="/LoveBank.html">LoveBank</a></li>
           <li><a href="/Profile.html">Profile</a></li>
@@ -36,11 +36,11 @@
       </div>
       <div class="row marketing">
 
-          <h2>Entry</h2>
+          <h2>Deposit</h2>
           <form id="entry" action="/entries" method="post" accept-charset="utf-8" class="form-horizontal" role="form">
 
             <div class="form-group">
-              <label class="col-sm-4 control-label">Appreciation</label>
+              <label class="col-sm-4 control-label">Impact level:</label>
               <div class="col-sm-8">
                 <label class="radio-inline"><input type="radio" name="rating" value="1" required>One</label>
                 <label class="radio-inline"><input type="radio" name="rating" value="2">Two</label>
@@ -51,7 +51,7 @@
             </div>
 
             <div class="form-group">
-              <label class="col-sm-4 control-label" for="exampleTextarea">Notes about how you feel</label>
+              <label class="col-sm-4 control-label" for="exampleTextarea">Tell me all the details:</label>
               <div class="col-sm-8">
                 <textarea class="form-control" type="text" name="description" rows="3"></textarea>
               </div>
@@ -60,19 +60,19 @@
             <div class="form-group">
               <label class="col-sm-4 control-label">Action received:</label>
               <div class="col-sm-8">
-                <label class="radio-inline"><input type="checkbox" name="received">Received Action</label>
+                <label class="radio-inline"><input type="checkbox" name="received"> Received Action</label>
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-sm-4 control-label">Share with your partner:</label>
               <div class="col-sm-8">
-                <label class="radio-inline"><input type="checkbox" name="keep_private">Keep Private</label>
+                <label class="radio-inline"><input type="checkbox" name="keep_private"> Keep Private</label>
               </div>
             </div>
 
             <div class="control-group">
-              <label for="date-picker-2" class="control-label">Occurred On</label>
+              <label for="date-picker-2" class="control-label">Occurred On:</label>
               <div class="controls">
                 <div class="input-group col-xs-6">
                   <input id="date-picker-2" type="text" class="date-picker form-control" />

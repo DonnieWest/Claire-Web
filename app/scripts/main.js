@@ -11,10 +11,12 @@ $(function () {
 if (profile_firstname) {
   console.log("Found profile firstname from storage " + profile_firstname);
   $('#profile-name').text("Welcome " + profile_firstname);
+  $('#profile').hide();
 }
 
 if (linked_FirstName) {
   $('#linked_FirstName').text("Linked to " + linked_FirstName);
+  $('#linked-profile-form').hide();
 }
 
 if(linked_ID === null){
@@ -66,7 +68,7 @@ $('#linked-profile-form').submit(function() {
     console.log("JSON success response", json);
     var linked_profile_id = json.data[0].id;
     var linked_profile_firstname = json.data[0].attributes.firstname;
-    debugger;
+    $('#linked-profile-form').hide();
     localStorage.setItem("linked_profile_id", linked_profile_id);
     localStorage.setItem("linked_profile_firstname", linked_profile_firstname);
     $('#message').text('Success!').show();
