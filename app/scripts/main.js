@@ -1,5 +1,5 @@
 console.log('\'Hello \'Hello!');
-var apiDomainURL = "https://frank.treasury.love"
+var apiDomainURL = "https://frank.treasury.love";
 var profile_firstname = localStorage.getItem("profile_firstname");
 var linked_ID = localStorage.getItem("linked_profile_id");
 var linked_FirstName = localStorage.getItem("linked_profile_firstname");
@@ -81,7 +81,7 @@ $('#linked-profile-form').submit(function() {
 
 $('#love-bank').submit(function() {
   var rating = $('input[name=rating]:checked', $(this)).val();
-  var description = $(this).find('input[name="description"]').val();
+  var description = $(this).find('textarea').val();
   var profile_id = localStorage.getItem("profile_id");
 
   var dat = '{ "data":' +
@@ -102,7 +102,7 @@ $('#love-bank').submit(function() {
     dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
   }).success(function(json){
     console.log("JSON success response", json);
-    $('#message').text('Success!');
+    $('#message').text('Success!').show();
   }).error(function(json) {
     console.log (json);
     $('#message').text('Oops, there was a problem').show();
@@ -114,7 +114,7 @@ $('#love-bank').submit(function() {
 
 $('#mood').submit(function() {
   var rating = $('input[name=mood_rating]:checked', $(this)).val();
-  var description = $(this).find('input[name="description"]').val();
+  var description = $(this).find('textarea').val();
   var profile_id = localStorage.getItem("profile_id");
 
   var dat = '{ "data":' +
@@ -150,7 +150,7 @@ $('#entry').submit(function() {
   var rating = $('input[name=rating]:checked', $(this)).val();
   var received = $('input[name=received]:checked', $(this)).val();
   var keep_private = $('input[name=keep_private]:checked', $(this)).val();
-  var description = $(this).find('input[name="description"]').val();
+  var description = $(this).find('textarea').val();
   var profile_id = localStorage.getItem("profile_id");
 
   // this is to handle how Rails will cast undefined to true in Rails 5
