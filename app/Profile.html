@@ -42,15 +42,21 @@
         <div class="col-lg-6">
           <h2>Profile Details</h2>
           <form id="profile" action="http://localhost:3000/profiles" method="post" accept-charset="utf-8">
-            <label for="firstname">First Name
-              <input type="text" name="firstname">
-            </label>
-            <label for="lastname">Last Name
-              <input type="text" name="lastname">
-            </label>
-            <label for="email">Email
-              <input type="text" name="email">
-            </label>
+            <fieldset class="form-group">
+              <label for="firstname">First Name</label>
+              <input class="form-control" type="text" name="firstname">
+
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="lastname">Last Name</label>
+              <input class="form-control" type="text" name="lastname">
+
+            </fieldset>
+            <fieldset class="form-group">
+            <label for="email">Email</label>
+              <input class="form-control" type="text" name="email">
+
+            </fieldset>
             <p><input type="submit" value="Save"></p>
           </form>
 
