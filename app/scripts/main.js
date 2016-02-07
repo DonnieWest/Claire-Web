@@ -1,6 +1,6 @@
 console.log('\'Hello \'Hello!');
-// var apiDomainURL = "https://frank.treasury.love";
-var apiDomainURL = "http://localhost:3000";
+var apiDomainURL = "https://frank.treasury.love";
+// var apiDomainURL = "http://localhost:3000";
 var profile_firstname = localStorage.getItem("profile_firstname");
 var linked_ID = localStorage.getItem("linked_profile_id");
 var linked_FirstName = localStorage.getItem("linked_profile_firstname");
