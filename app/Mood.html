@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 
+    <link href="/bower_components/bootstrap-star-rating/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
@@ -58,13 +60,9 @@
         <form id="mood" action="/moods" method="post" accept-charset="utf-8" class="form-horizontal" role="form">
 
           <div class="form-group">
-            <label class="col-sm-4 control-label">Mood Rating</label>
+            <label class="col-sm-4 control-label">Impact level:</label>
             <div class="col-sm-8">
-              <label class="radio-inline"><input type="radio" name="mood_rating" value="1">One</label>
-              <label class="radio-inline"><input type="radio" name="mood_rating" value="2">Two</label>
-              <label class="radio-inline"><input type="radio" name="mood_rating" value="3">Three</label>
-              <label class="radio-inline"><input type="radio" name="mood_rating" value="4">Four</label>
-              <label class="radio-inline"><input type="radio" name="mood_rating" value="5">Five</label>
+              <input id="rating" type="number" class="rating" min=0 max=5 step=1 required>
             </div>
           </div>
 
@@ -103,6 +101,8 @@
     <script src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+
+    <script src="/bower_components/bootstrap-star-rating/js/star-rating.min.js" type="text/javascript"></script>
 
     <!-- build:js scripts/plugins.js -->
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>

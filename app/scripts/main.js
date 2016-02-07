@@ -1,5 +1,6 @@
 console.log('\'Hello \'Hello!');
-var apiDomainURL = "https://frank.treasury.love";
+// var apiDomainURL = "https://frank.treasury.love";
+var apiDomainURL = "http://localhost:3000";
 var profile_firstname = localStorage.getItem("profile_firstname");
 var linked_ID = localStorage.getItem("linked_profile_id");
 var linked_FirstName = localStorage.getItem("linked_profile_firstname");
@@ -82,7 +83,7 @@ $('#linked-profile-form').submit(function() {
 });
 
 $('#love-bank').submit(function() {
-  var rating = $('input[name=rating]:checked', $(this)).val();
+  var rating = $('#rating').val();
   var description = $(this).find('textarea').val();
   var profile_id = localStorage.getItem("profile_id");
 
@@ -115,7 +116,7 @@ $('#love-bank').submit(function() {
 });
 
 $('#mood').submit(function() {
-  var rating = $('input[name=mood_rating]:checked', $(this)).val();
+  var rating = $('#rating').val();
   var description = $(this).find('textarea').val();
   var profile_id = localStorage.getItem("profile_id");
 
@@ -149,7 +150,7 @@ $('#mood').submit(function() {
 
 $('#entry').submit(function() {
   var occurred_on = $('#date-picker-2').val();
-  var rating = $('input[name=rating]:checked', $(this)).val();
+  var rating = $('#rating').val();
   var received = $('input[name=received]:checked', $(this)).val();
   var keep_private = $('input[name=keep_private]:checked', $(this)).val();
   var description = $(this).find('textarea').val();
