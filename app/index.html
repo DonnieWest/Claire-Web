@@ -25,15 +25,30 @@
     <![endif]-->
 
     <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="/">Deposit</a></li>
-          <li><a href="/Mood.html">Mood</a></li>
-          <li><a href="/LoveBank.html">LoveBank</a></li>
-          <li><a href="/Profile.html">Profile</a></li>
-        </ul>
-        <h3 class="text-muted" id="profile-name">LoveBank Web</h3>
-      </div>
+
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Love Treasury</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Deposit</a></li>
+                <li><a href="/Mood.html">Mood</a></li>
+                <li><a href="/LoveBank.html">LoveBank</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a id="profile-name" href="/Profile.html"></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
       <div class="row marketing">
 
           <h2>Deposit</h2>
@@ -72,18 +87,17 @@
             </div>
 
             <div class="control-group">
-              <label for="date-picker-2" class="control-label">Occurred On:</label>
+              <label for="date-picker-2" class="col-sm-4 control-label">Occurred On:</label>
               <div class="controls">
-                <div class="input-group col-xs-6">
-                  <input id="date-picker-2" type="text" class="date-picker form-control" />
+                <div class="input-group col-sm-6 col-md-4">
+                  <input id="date-picker-2" type="text" class="date-picker form-control" readonly/>
                   <label for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span>
                   </label>
                 </div>
               </div>
             </div>
 
-            <p>Try to specify as exact as possible when the action occured. This helps us analyze the data and
-            determine meaningful actions.</p>
+            <p>This is an optional choice. Specify a date if the action occurred in the past.</p>
 
             <div class="form-group col-sm-12">
               <button type="submit" class="btn btn-primary">Save</button>
@@ -149,7 +163,11 @@
     <script type="text/javascript">
       // Date picker for Entry form.
       $(function() {
-        $('.date-picker').datetimepicker().on('dp.change', function (e) {
+        $('.date-picker').datetimepicker(
+          {
+            format: 'MM/DD/YYYY',
+            maxDate: $.now(),
+            ignoreReadonly: true}).on('dp.change', function (e) {
             $('date-picker-2').val(e.date.toString());
           }
         );

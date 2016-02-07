@@ -29,18 +29,33 @@
     <![endif]-->
 
     <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="/">Deposit</a></li>
-          <li><a href="/Mood.html">Mood</a></li>
-          <li><a href="/LoveBank.html">LoveBank</a></li>
-          <li class="active"><a href="/Profile.html">Profile</a></li>
-        </ul>
-        <h3 class="text-muted" id="profile-name">Profile</h3>
-      </div>
+
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Love Treasury</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Deposit</a></li>
+              <li><a href="/Mood.html">Mood</a></li>
+              <li><a href="/LoveBank.html">LoveBank</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a id="profile-name" href="/Profile.html"></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
       <div class="row marketing">
         <div class="col-lg-6">
-          <h2>Profile Details</h2>
+          <h1>Profile Details</h1>
 
           <form id="profile" action="/profiles" method="post" accept-charset="utf-8">
             <fieldset class="form-group">
@@ -55,7 +70,9 @@
             <label for="email">Email</label>
               <input class="form-control" type="text" name="email">
             </fieldset>
-            <input class="btn btn-default"type="submit" value="Save">
+            <div class="form-group col-sm-12">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
           </form>
 
           <h3>Your partners email address</h3>
@@ -67,7 +84,9 @@
             <label for="email">Email</label>
               <input class="form-control" type="text" name="email">
             </fieldset>
-            <input class="btn btn-default" type="submit" value="Lookup">
+            <div class="form-group col-sm-12">
+              <button type="submit" class="btn btn-primary">Lookup</button>
+            </div>
           </form>
 
           <div id="message"></div>
