@@ -30,16 +30,42 @@ $('#profile').submit(function() {
     $('#message').text('Success! Profile successfully saved.').show();
   }).error(function(json) {
     console.log (json);
-    $('#message').text('Oops, there was a problem').show();
+    if (json.responseJSON.errors[0].status === "422" && json.responseJSON.errors[0].detail === "email - has already been taken") {
+      getProfile(email);
+    } else {
+      $('#message').text('Oops, there was a problem').show();
+    }
   });
 
   /* stop form from submitting normally */
   event.preventDefault();
 });
 
+function getProfile(email)
+{
+  $.ajax({
+    type: 'get',
+    url: apiDomainURL + '/profiles?filter[email]=' + email,
+    headers: {
+      Accept: "application/json"
+    },
+    dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+  }).success(function(json){
+    console.log("JSON success response", json);
+    localStorage.setItem("profile_id", json.data[0].id);
+    localStorage.setItem("profile_firstname", json.data[0].attributes.firstname);
+    $('#profile-name').text("Welcome " + json.data[0].attributes.firstname);
+    $('#profile').hide();
+    $('#message').text('Success!').show();
+
+  }).error(function(json) {
+    console.log (json);
+    $('#message').text('Oops, there was a problem').show();
+  });
+}
+
 $('#linked-profile-form').submit(function() {
   var email = $(this).find('input[name="email"]').val();
-  debugger;
   $.ajax({
     type: $(this).attr('method'),
     url: apiDomainURL + $(this).attr('action') + email,
