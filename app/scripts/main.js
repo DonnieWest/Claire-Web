@@ -26,7 +26,7 @@ if (linked_FirstName) {
 }
 
 if(linked_ID === null){
-  $('#message').text('You must define a partner before you can submit an entry!').addClass('alert alert-warning').show();
+  window.location = 'welcome.html';
 }
 
 $('input[type=radio][name=received]').change(function() {
