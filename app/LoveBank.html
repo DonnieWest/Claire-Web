@@ -57,23 +57,26 @@
       </nav>
 
       <div class="row marketing">
-        <h2>Love Bank</h2>
+        <h2>Love Bank Level</h2>
         <form id="love-bank" action="/love-bank" method="post" accept-charset="utf-8" class="form-horizontal" role="form">
 
           <div class="form-group">
-            <label class="col-sm-4 control-label">Impact level:</label>
-            <div class="col-sm-8">
+            <!-- <label class="col-sm-4 control-label">level:</label> -->
+            <div class="col-sm-12">
               <input id="rating" type="number" class="rating" min=0 max=5 step=1 required>
+              <p>Rate what you believe to be your current Love Bank level.</p>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="exampleTextarea">Thoughts</label>
-          <textarea class="form-control" type="text" name="description" rows="3"></textarea>
-        </div>
-        <div class="form-group col-sm-12">
-          <button type="submit" class="btn btn-primary">Save</button>
-        </div>
+            <div class="col-sm-12">
+              <label for="exampleTextarea">Thoughts</label>
+              <textarea class="form-control" type="text" name="description" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="form-group col-sm-12">
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
         </form>
         <div id="message" class="alert alert-success col-sm-12" role="alert"></div>
       </div>

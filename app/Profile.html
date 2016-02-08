@@ -58,15 +58,15 @@
           <h1>Profile Details</h1>
 
           <form id="profile" action="/profiles" method="post" accept-charset="utf-8">
-            <fieldset class="form-group">
+            <fieldset class="form-group col-sm-12">
               <label for="firstname">First Name</label>
               <input class="form-control" type="text" name="firstname">
             </fieldset>
-            <fieldset class="form-group">
+            <fieldset class="form-group col-sm-12">
               <label for="lastname">Last Name</label>
               <input class="form-control" type="text" name="lastname">
             </fieldset>
-            <fieldset class="form-group">
+            <fieldset class="form-group col-sm-12">
             <label for="email">Email</label>
               <input class="form-control" type="text" name="email">
             </fieldset>
@@ -80,12 +80,12 @@
           <div id="linked_FirstName"></div>
 
           <form id="linked-profile-form" action="/profiles?filter[email]=" method="get" accept-charset="utf-8">
-            <fieldset class="form-group">
+            <fieldset class="form-group col-sm-12">
             <label for="email">Email</label>
               <input class="form-control" type="text" name="email">
             </fieldset>
             <div class="form-group col-sm-12">
-              <button type="submit" class="btn btn-primary">Lookup</button>
+              <button type="submit" class="btn btn-primary">Connect</button>
             </div>
           </form>
 
@@ -131,8 +131,7 @@
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js scripts/main.js -->
-    <script src="scripts/main.js"></script>
+    <script src="scripts/profile.js"></script>
     <!-- endbuild -->
   </body>
 </html>
