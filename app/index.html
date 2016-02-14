@@ -16,6 +16,8 @@
     <!-- endbower -->
     <!-- endbuild -->
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" type="text/css"/>
+
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -26,30 +28,26 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="container">
-
-        <nav class="navbar navbar-inverse">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="/">Love Bank <i class="glyphicon glyphicon-piggy-bank"></i></a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Deposit</a></li>
-                <li><a href="/Mood.html">Mood</a></li>
-                <li><a href="/LoveBank.html">LoveBank</a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li><a id="profile-name" href="/Profile.html">Sign-Up</a></li>
-              </ul>
-            </div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Love Bank <i class="glyphicon glyphicon-piggy-bank"></i></a>
           </div>
-        </nav>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/">Deposit</a></li>
+              <li><a href="/Mood.html">Mood</a></li>
+              <li><a href="/LoveBank.html">LoveBank</a></li>
+              <li><a id="profile-name" href="/Profile.html"></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
       <div class="row marketing">
 
@@ -65,7 +63,7 @@
             </div>
 
             <div class="form-group">
-              <label class="col-sm-4 control-label" for="exampleTextarea">Tell me all the details:</label>
+              <label class="col-sm-4 control-label">Tell me all the details:</label>
               <div class="col-sm-8">
                 <textarea class="form-control" type="text" name="description" rows="3"></textarea>
               </div>
@@ -94,7 +92,7 @@
             <div class="form-group" id="rating-element" style="display:none;">
               <label class="col-sm-4 control-label">Impact level:</label>
               <div class="col-sm-8">
-                <input id="rating" type="number" class="rating" min=0 max=5 step=1 required>
+                <input id="rating" type="number" class="rating" data-size="xs" min=0 max=5 step=1 required>
               </div>
             </div>
 
@@ -103,7 +101,6 @@
             </div>
 
           </form>
-          <div id="message" class="alert alert-success col-sm-12" role="alert"></div>
 
       </div>
 
@@ -158,6 +155,27 @@
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+      toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-left",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+    </script>
 
     <script type="text/javascript">
       // Date picker for Entry form.

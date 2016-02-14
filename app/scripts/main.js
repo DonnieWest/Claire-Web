@@ -6,26 +6,19 @@ if (window.location.hostname === "localhost") {
   apiDomainURL = "https://frank.treasury.love";
 }
 
-var profile_firstname = localStorage.getItem("profile_firstname");
-var linked_ID = localStorage.getItem("linked_profile_id");
-var linked_FirstName = localStorage.getItem("linked_profile_firstname");
-
 $(function () {
   $('#message').hide();
 });
 
-if (profile_firstname) {
+if (localStorage.getItem("profile_firstname")) {
+  var profile_firstname = localStorage.getItem("profile_firstname");
   console.log("Found profile firstname from storage " + profile_firstname);
-  $('#profile-name').text("Welcome " + profile_firstname);
+  $('#profile-name').text(profile_firstname);
   $('#profile').hide();
 }
 
-if (linked_FirstName) {
-  $('#linked_FirstName').text("Linked to " + linked_FirstName);
-  $('#linked-profile-form').hide();
-}
-
-if(linked_ID === null){
+if(localStorage.getItem("profile_id") === null){
+  console.log("No profile found. redireting to welcome");
   window.location = 'welcome.html';
 }
 
@@ -42,7 +35,7 @@ $('#love-bank').submit(function() {
   var rating = $('#rating').val();
   var description = $(this).find('textarea').val();
   var profile_id = localStorage.getItem("profile_id");
-
+  var profile_firstname = localStorage.getItem("profile_firstname");
   var dat = '{ "data":' +
   '{ "type": "love-banks","relationships": {' +
     '"profile":{ "data":{ "type": "profiles", "id": "' + profile_id + '" }}},' +
@@ -61,10 +54,11 @@ $('#love-bank').submit(function() {
     dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
   }).success(function(json){
     console.log("JSON success response", json);
-    $('#message').text('Success!').show();
+    toastr["success"]("Successfully saved entry");
+    $('#love-bank').trigger("reset");
   }).error(function(json) {
     console.log (json);
-    $('#message').text('Oops, there was a problem').show();
+    toastr["error"]("There was a problem.");
   });
 
   /* stop form from submitting normally */
@@ -75,7 +69,7 @@ $('#mood').submit(function() {
   var rating = $('#rating').val();
   var description = $(this).find('textarea').val();
   var profile_id = localStorage.getItem("profile_id");
-
+  var profile_firstname = localStorage.getItem("profile_firstname");
   var dat = '{ "data":' +
     '{ "type": "moods","relationships": {' +
     '"profile":{ "data":{ "type": "profiles", "id": "' + profile_id + '" }}},' +
@@ -94,10 +88,11 @@ $('#mood').submit(function() {
     dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
   }).success(function(json){
     console.log("JSON success response", json);
-    $('#message').text('Success!').show();
+    toastr["success"]("Successfully saved entry");
+    $('#mood').trigger("reset");
   }).error(function(json) {
     console.log (json);
-    $('#message').text('Oops, there was a problem').show();
+    toastr["error"]("There was a problem.");
   });
 
   /* stop form from submitting normally */
@@ -118,6 +113,8 @@ $('#entry').submit(function() {
   var keep_private = $('input[name=keep_private]:checked', $(this)).val();
   var description = $(this).find('textarea').val();
   var profile_id = localStorage.getItem("profile_id");
+  var profile_firstname = localStorage.getItem("profile_firstname");
+  var linked_ID = localStorage.getItem("linked_profile_id");
 
   // this is to handle how Rails will cast undefined to true in Rails 5
   if(typeof received === 'undefined'){
@@ -147,11 +144,13 @@ $('#entry').submit(function() {
     dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
   }).success(function(json){
     console.log("JSON success response", json);
-    $('#message').text('Success!').show();
+    toastr["success"]("Successfully saved entry");
+    $('#entry').trigger("reset");
   }).error(function(json) {
     console.log (json);
-    $('#message').text('Oops, there was a problem').show();
+    toastr["error"]("There was a problem.");
   });
+
 
   /* stop form from submitting normally */
   event.preventDefault();

@@ -15,6 +15,8 @@
     <!-- endbower -->
     <!-- endbuild -->
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" type="text/css"/>
+
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -44,10 +46,8 @@
             <ul class="nav navbar-nav">
               <li><a href="/">Deposit</a></li>
               <li><a href="/Mood.html">Mood</a></li>
-              <li><a href="/LoveBank.html">LoveBank</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a id="profile-name" href="/Profile.html"></a></li>
+              <li class="active"><a href="/LoveBank.html">LoveBank</a></li>
+              <li><a id="profile-name" href="/Profile.html"></a></li>
             </ul>
           </div>
         </div>
@@ -89,7 +89,6 @@
             </div>
           </form>
 
-          <div id="message"></div>
         </div>
       </div>
       <div class="footer">
@@ -106,15 +105,11 @@
 
       ga('create', 'UA-73481201-1', 'auto');
       ga('send', 'pageview');
-
     </script>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/moment/moment.js"></script>
-    <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
-    <script src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -136,5 +131,26 @@
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
     <!-- endbuild -->
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+      toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-left",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+    </script>
   </body>
 </html>

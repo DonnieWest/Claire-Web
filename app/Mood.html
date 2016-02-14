@@ -9,6 +9,8 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" type="text/css"/>
+
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -46,8 +48,6 @@
               <li><a href="/">Deposit</a></li>
               <li class="active"><a href="/Mood.html">Mood</a></li>
               <li><a href="/LoveBank.html">LoveBank</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
               <li><a id="profile-name" href="/Profile.html"></a></li>
             </ul>
           </div>
@@ -55,18 +55,18 @@
       </nav>
 
       <div class="row marketing">
-        <h2>Current Mood</h2>
+        <h2>Your current Mood</h2>
         <form id="mood" action="/moods" method="post" accept-charset="utf-8" class="form-horizontal" role="form">
 
           <div class="form-group">
             <div class="col-sm-12 ">
-              <input id="rating" type="number" class="rating" min=0 max=5 step=1 required>
+              <input id="rating" type="number" class="rating" data-size="xs" min=0 max=5 step=1 required>
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-12 ">
-              <label for="exampleTextarea">Notes about how you feel</label>
+              <label>Notes about how you feel</label>
               <textarea class="form-control" type="text" name="description" rows="3"></textarea>
             </div>
           </div>
@@ -75,11 +75,14 @@
             <button type="submit" class="btn btn-primary">Save</button>
           </div>
         </form>
-        <div id="message"></div>
       </div>
 
       <div class="footer">
-        <p>♥ from the LoveBank team</p>
+        <div class="container">
+          <div class="row">
+            <h5>♥ from the LoveBank team</h5>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -92,7 +95,6 @@
 
       ga('create', 'UA-73481201-1', 'auto');
       ga('send', 'pageview');
-
     </script>
 
     <!-- build:js scripts/vendor.js -->
@@ -124,5 +126,27 @@
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+      toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-left",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+    </script>
+
   </body>
 </html>

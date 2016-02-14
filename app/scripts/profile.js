@@ -4,6 +4,15 @@ if (window.location.hostname === "localhost") {
 } else {
   apiDomainURL = "https://frank.treasury.love";
 }
+var profile_firstname = localStorage.getItem("profile_firstname");
+if (profile_firstname) {
+  var profile_form = $('#profile');
+  profile_form.find('input[name="firstname"]').val(profile_firstname);
+  var linked_profile_firstname = localStorage.getItem("linked_profile_firstname");
+  if (linked_profile_firstname) {
+    $('#linked-profile-form').find('input[name="firstname"]').val(linked_profile_firstname);
+  }
+}
 
 $('#profile').submit(function() {
   var firstName = $(this).find('input[name="firstname"]').val();
@@ -27,13 +36,13 @@ $('#profile').submit(function() {
     localStorage.setItem("profile_firstname", firstName);
     $('#profile-name').text("Welcome " + firstName);
     $('#profile').hide();
-    $('#message').text('Success! Profile successfully saved.').show();
+    toastr["success"]("Profile saved.", "Success!");
   }).error(function(json) {
     console.log (json);
     if (json.responseJSON.errors[0].status === "422" && json.responseJSON.errors[0].detail === "email - has already been taken") {
       getProfile(email);
     } else {
-      $('#message').text('Oops, there was a problem').show();
+      toastr["error"]("There was a problem saving your account.");
     }
   });
 
@@ -56,11 +65,11 @@ function getProfile(email)
     localStorage.setItem("profile_firstname", json.data[0].attributes.firstname);
     $('#profile-name').text("Welcome " + json.data[0].attributes.firstname);
     $('#profile').hide();
-    $('#message').text('Success!').show();
+    toastr["success"]("Profile linked.", "Success!");
 
   }).error(function(json) {
     console.log (json);
-    $('#message').text('Oops, there was a problem').show();
+    toastr["error"]("There was a problem finding the account.");
   });
 }
 
@@ -80,10 +89,10 @@ $('#linked-profile-form').submit(function() {
     $('#linked-profile-form').hide();
     localStorage.setItem("linked_profile_id", linked_profile_id);
     localStorage.setItem("linked_profile_firstname", linked_profile_firstname);
-    $('#message').text('Successfully connected to ' + linked_profile_firstname).show();
+    toastr["success"]("Profile linked to " + linked_profile_firstname, "Success!");
   }).error(function(json) {
     console.log (json);
-    $('#message').text('Oops, there was a problem').show();
+    toastr["error"]("There was a problem linking to the account.");
   });
 
   /* stop form from submitting normally */
