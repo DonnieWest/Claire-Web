@@ -4,6 +4,14 @@ if (window.location.hostname === "localhost") {
 } else {
   apiDomainURL = "https://frank.treasury.love";
 }
+
+var mailDomainURL = "";
+if (window.location.hostname === "localhost") {
+  mailDomainURL = "http://localhost:3001";
+} else {
+  mailDomainURL = "https://frank-mail.herokuapp.com";
+}
+
 var profile_firstname = localStorage.getItem("profile_firstname");
 if (profile_firstname) {
   var profile_form = $('#profile');
@@ -65,8 +73,30 @@ function getProfile(email)
     localStorage.setItem("profile_firstname", json.data[0].attributes.firstname);
     $('#profile-name').text("Welcome " + json.data[0].attributes.firstname);
     $('#profile').hide();
-    toastr["success"]("Profile linked.", "Success!");
+    toastr["success"]("Profile linked to " + json.data[0].attributes.firstname, "Success!");
 
+  }).error(function(json) {
+    console.log (json);
+    toastr["error"]("There was a problem finding the account.");
+  });
+}
+
+function invitePartner(email)
+{
+  $.ajax({
+    type: 'post',
+    url: mailDomainURL + '/invite_partner',
+    data: {
+      invite : {email: email, id: localStorage.getItem("profile_id")}
+    },
+    headers: {
+      Accept: "application/json"
+    },
+    dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+  }).success(function(json){
+    console.log("JSON success response", json);
+    toastr["info"]("Invitation successfully sent to " + email +
+      ". <br /> Make sure to revisit this page once your partner registers.", "Sent!");
   }).error(function(json) {
     console.log (json);
     toastr["error"]("There was a problem finding the account.");
@@ -84,12 +114,17 @@ $('#linked-profile-form').submit(function() {
     dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
   }).success(function(json){
     console.log("JSON success response", json);
-    var linked_profile_id = json.data[0].id;
-    var linked_profile_firstname = json.data[0].attributes.firstname;
-    $('#linked-profile-form').hide();
-    localStorage.setItem("linked_profile_id", linked_profile_id);
-    localStorage.setItem("linked_profile_firstname", linked_profile_firstname);
-    toastr["success"]("Profile linked to " + linked_profile_firstname, "Success!");
+    if (json.data.length == 1) {
+      var linked_profile_id = json.data[0].id;
+      var linked_profile_firstname = json.data[0].attributes.firstname;
+      $('#linked-profile-form').hide();
+      localStorage.setItem("linked_profile_id", linked_profile_id);
+      localStorage.setItem("linked_profile_firstname", linked_profile_firstname);
+      toastr["success"]("Profile linked to " + linked_profile_firstname, "Success!");
+    } else {
+      invitePartner(email);
+      $('#linked-profile-form').trigger("reset");
+    }
   }).error(function(json) {
     console.log (json);
     toastr["error"]("There was a problem linking to the account.");
