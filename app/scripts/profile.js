@@ -9,7 +9,7 @@ var mailDomainURL = "";
 if (window.location.hostname === "localhost") {
   mailDomainURL = "http://localhost:3001";
 } else {
-  mailDomainURL = "https://frank-mail.herokuapp.com";
+  mailDomainURL = "https://frank-mail.treasury.love";
 }
 
 var profile_firstname = localStorage.getItem("profile_firstname");
