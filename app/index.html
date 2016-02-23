@@ -53,6 +53,22 @@
 
       <div class="row marketing">
 
+        <div class="row" id="partner_form">
+          <h2>Your partners email address</h2>
+          <p>This is used to link actions received by partners and must be completed before you can make a deposit.</p>
+          <div id="linked_FirstName"></div>
+
+          <form id="linked-profile-form" action="/profiles?filter[email]=" method="get" accept-charset="utf-8">
+            <fieldset class="form-group col-sm-12">
+              <label for="email">Email</label>
+              <input class="form-control" type="email" name="email">
+            </fieldset>
+            <div class="form-group col-sm-12">
+              <button type="submit" class="btn btn-primary">Connect</button>
+            </div>
+          </form>
+        </div>
+
           <h2>Deposit</h2>
           <form id="entry" action="/entries" method="post" accept-charset="utf-8" class="form-horizontal" role="form">
 
@@ -76,9 +92,9 @@
               <div class="col-sm-8">
                 <label class="radio-inline"><input type="checkbox" name="keep_private"> Keep Private</label>
               </div>
-            </div> -->
+            </div>
 
-            <div class="control-group">
+            <div class="control-group" style="display:none">
               <label for="date-picker-2" class="col-sm-4 control-label">Occurred On:</label>
               <div class="controls">
                 <div class="input-group col-sm-6 col-md-4">
@@ -89,7 +105,7 @@
               </div>
             </div>
 
-            <p>This is an optional choice. Specify a date if the action occurred in the past.</p>
+            <p>This is an optional choice. Specify a date if the action occurred in the past.</p> -->
 
             <div class="form-group" id="rating-element" style="display:none;">
               <label class="col-sm-4 control-label">Impact level:</label>

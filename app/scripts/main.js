@@ -7,7 +7,13 @@ if (window.location.hostname === "localhost") {
 }
 
 $(function () {
-  $('#message').hide();
+  var linked_ID = localStorage.getItem("linked_profile_id");
+
+  if (linked_ID === null) {
+    $('#partner_form').show();
+  } else {
+    $('#partner_form').hide();
+  }
 });
 
 if (localStorage.getItem("profile_firstname")) {
@@ -129,7 +135,7 @@ $('#entry').submit(function() {
     '{ "type": "entries","relationships": {' +
     '"profile":{ "data":{ "type": "profiles", "id": "' + profile_id + '" }}},' +
     '"attributes": {"received":"' + received + '","private":"' + keep_private + '","note":"' + description
-    + '", "rating":' + rating + ',"linked-profile-id":' + linked_ID + ', "occurred-on":"' + occurred_on + '"}}}';
+    + '", "rating":' + rating + ',"linked-profile-id":' + linked_ID + '}}}';
 
   console.log(dat);
 
@@ -151,6 +157,37 @@ $('#entry').submit(function() {
     toastr["error"]("There was a problem.");
   });
 
+
+  /* stop form from submitting normally */
+  event.preventDefault();
+});
+
+$('#linked-profile-form').submit(function() {
+  var email = $(this).find('input[name="email"]').val();
+  $.ajax({
+    type: $(this).attr('method'),
+    url: apiDomainURL + $(this).attr('action') + email,
+    headers: {
+      Accept: "application/json"
+    },
+    dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+  }).success(function(json){
+    console.log("JSON success response", json);
+    if (json.data.length == 1) {
+      var linked_profile_id = json.data[0].id;
+      var linked_profile_email = json.data[0].attributes.email;
+      $('#partner_form').hide();
+      localStorage.setItem("linked_profile_id", linked_profile_id);
+      localStorage.setItem("linked_profile_email", linked_profile_email);
+      toastr["success"]("Profile linked to " + linked_profile_email, "Success!");
+    } else {
+      invitePartner(email);
+      $('#linked-profile-form').trigger("reset");
+    }
+  }).error(function(json) {
+    console.log (json);
+    toastr["error"]("There was a problem linking to the account.");
+  });
 
   /* stop form from submitting normally */
   event.preventDefault();

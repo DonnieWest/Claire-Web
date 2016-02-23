@@ -16,9 +16,9 @@ var profile_firstname = localStorage.getItem("profile_firstname");
 if (profile_firstname) {
   var profile_form = $('#profile');
   profile_form.find('input[name="firstname"]').val(profile_firstname);
-  var linked_profile_firstname = localStorage.getItem("linked_profile_firstname");
-  if (linked_profile_firstname) {
-    $('#linked-profile-form').find('input[name="firstname"]').val(linked_profile_firstname);
+  var linked_profile_email = localStorage.getItem("linked_profile_email");
+  if (linked_profile_email) {
+    $('#linked-profile-form').find('input[name="email"]').val(linked_profile_email);
   }
 }
 
@@ -116,11 +116,11 @@ $('#linked-profile-form').submit(function() {
     console.log("JSON success response", json);
     if (json.data.length == 1) {
       var linked_profile_id = json.data[0].id;
-      var linked_profile_firstname = json.data[0].attributes.firstname;
+      var linked_profile_email = json.data[0].attributes.email;
       $('#linked-profile-form').hide();
       localStorage.setItem("linked_profile_id", linked_profile_id);
-      localStorage.setItem("linked_profile_firstname", linked_profile_firstname);
-      toastr["success"]("Profile linked to " + linked_profile_firstname, "Success!");
+      localStorage.setItem("linked_profile_email", linked_profile_email);
+      toastr["success"]("Profile linked to " + linked_profile_email, "Success!");
     } else {
       invitePartner(email);
       $('#linked-profile-form').trigger("reset");
