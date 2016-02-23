@@ -39,13 +39,13 @@ $('input[type=radio][name=received]').change(function() {
 
 $('#love-bank').submit(function() {
   var rating = $('#rating').val();
-  var description = $(this).find('textarea').val();
+  var description = JSON.stringify($(this).find('textarea').val());
   var profile_id = localStorage.getItem("profile_id");
   var profile_firstname = localStorage.getItem("profile_firstname");
   var dat = '{ "data":' +
   '{ "type": "love-banks","relationships": {' +
     '"profile":{ "data":{ "type": "profiles", "id": "' + profile_id + '" }}},' +
-    '"attributes": {"note":"' + description + '", "rating":' + rating + '}}}';
+    '"attributes": {"note":' + description + ', "rating":' + rating + '}}}';
 
   console.log(dat);
 
@@ -73,13 +73,13 @@ $('#love-bank').submit(function() {
 
 $('#mood').submit(function() {
   var rating = $('#rating').val();
-  var description = $(this).find('textarea').val();
+  var description = JSON.stringify($(this).find('textarea').val());
   var profile_id = localStorage.getItem("profile_id");
   var profile_firstname = localStorage.getItem("profile_firstname");
   var dat = '{ "data":' +
     '{ "type": "moods","relationships": {' +
     '"profile":{ "data":{ "type": "profiles", "id": "' + profile_id + '" }}},' +
-    '"attributes": {"note":"' + description + '", "rating":' + rating + '}}}';
+    '"attributes": {"note":' + description + ', "rating":' + rating + '}}}';
 
   console.log(dat);
 
@@ -117,7 +117,7 @@ $('#entry').submit(function() {
   }
 
   var keep_private = $('input[name=keep_private]:checked', $(this)).val();
-  var description = $(this).find('textarea').val();
+  var description = JSON.stringify($(this).find('textarea').val());
   var profile_id = localStorage.getItem("profile_id");
   var profile_firstname = localStorage.getItem("profile_firstname");
   var linked_ID = localStorage.getItem("linked_profile_id");
@@ -134,8 +134,8 @@ $('#entry').submit(function() {
   var dat = '{ "data":' +
     '{ "type": "entries","relationships": {' +
     '"profile":{ "data":{ "type": "profiles", "id": "' + profile_id + '" }}},' +
-    '"attributes": {"received":"' + received + '","private":"' + keep_private + '","note":"' + description
-    + '", "rating":' + rating + ',"linked-profile-id":' + linked_ID + '}}}';
+    '"attributes": {"received":"' + received + '","private":"' + keep_private + '","note":' + description
+    + ', "rating":' + rating + ',"linked-profile-id":' + linked_ID + '}}}';
 
   console.log(dat);
 
