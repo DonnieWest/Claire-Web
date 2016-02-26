@@ -106,35 +106,35 @@ $('#mood').submit(function() {
 });
 
 $('#entry').submit(function() {
-  var occurred_on = $('#date-picker-2').val();
+  //var occurred_on = $('#date-picker-2').val();
   var rating = $('#rating').val();
-  var received = $('input[name=received]:checked', $(this)).val();
-  if (received === 'given') {
-    received = false;
-    rating = null;
-  } else {
-    received = true;
-  }
+  //var received = $('input[name=received]:checked', $(this)).val();
+  //if (received === 'given') {
+  //  received = false;
+  //  rating = null;
+  //} else {
+  //  received = true;
+  //}
 
-  var keep_private = $('input[name=keep_private]:checked', $(this)).val();
+  //var keep_private = $('input[name=keep_private]:checked', $(this)).val();
   var description = JSON.stringify($(this).find('textarea').val());
   var profile_id = localStorage.getItem("profile_id");
   var profile_firstname = localStorage.getItem("profile_firstname");
   var linked_ID = localStorage.getItem("linked_profile_id");
 
   // this is to handle how Rails will cast undefined to true in Rails 5
-  if(typeof received === 'undefined'){
-    received = false;
-  }
+  //if(typeof received === 'undefined'){
+  //  received = false;
+  //}
 // this is to handle how Rails will cast undefined to true in Rails 5
-  if(typeof keep_private === 'undefined'){
-    keep_private = false;
-  }
+//  if(typeof keep_private === 'undefined'){
+//    keep_private = false;
+//  }
 
   var dat = '{ "data":' +
     '{ "type": "entries","relationships": {' +
     '"profile":{ "data":{ "type": "profiles", "id": "' + profile_id + '" }}},' +
-    '"attributes": {"received":"' + received + '","private":"' + keep_private + '","note":' + description
+    '"attributes": {"received":"true","private":"false","note":' + description
     + ', "rating":' + rating + ',"linked-profile-id":' + linked_ID + '}}}';
 
   console.log(dat);

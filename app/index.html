@@ -69,21 +69,22 @@
           </form>
         </div>
 
-          <h2>Deposit</h2>
+          <h2>Credit Entry</h2>
           <form id="entry" action="/entries" method="post" accept-charset="utf-8" class="form-horizontal" role="form">
 
-            <div class="form-group">
+            <!--div class="form-group">
               <label class="col-sm-4 control-label">Action received or given:</label>
               <div class="col-sm-8">
                 <label class="radio-inline"><input type="radio" name="received" value="received"> Received</label>
                 <label class="radio-inline"><input type="radio" name="received" value="given"> Given</label>
               </div>
-            </div>
+            </div-->
 
-            <div class="form-group">
-              <label class="col-sm-4 control-label">Tell me all the details:</label>
-              <div class="col-sm-8">
-                <textarea class="form-control" type="text" name="description" rows="3"></textarea>
+            <div class="form-group col-sm-12">
+              <p>What are you giving your partner credit for and how did it speak to you.</p>
+              <label class="control-label">Details:</label>
+              <div>
+                <textarea class="form-control" type="text" name="description" rows="5"></textarea>
               </div>
             </div>
 
@@ -107,15 +108,15 @@
 
             <p>This is an optional choice. Specify a date if the action occurred in the past.</p> -->
 
-            <div class="form-group" id="rating-element" style="display:none;">
-              <label class="col-sm-4 control-label">Impact level:</label>
-              <div class="col-sm-8">
+            <div class="form-group col-sm-12" id="rating-element">
+              <label class="control-label">Credit Rating:</label>
+              <div>
                 <input id="rating" type="number" class="rating" data-size="xs" min=0 max=5 step=1 required>
               </div>
             </div>
 
             <div class="form-group col-sm-12">
-              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="submit" class="btn btn-primary">Save Credit</button>
             </div>
 
           </form>
