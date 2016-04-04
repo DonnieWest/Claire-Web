@@ -24,7 +24,7 @@ if (localStorage.getItem("profile_firstname")) {
 }
 
 if(localStorage.getItem("profile_id") === null){
-  console.log("No profile found. redireting to welcome");
+  console.log("No profile found. redirecting to welcome");
   window.location = 'welcome.html';
 }
 
