@@ -9,19 +9,19 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <!-- Place favicon.ico in the root directory -->
 
-  <!-- Bootstrap Core CSS -->
-  <link rel="stylesheet" href="styles/bootstrap.min.css" type="text/css">
-
   <!-- Custom Fonts -->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
-  <!-- Plugin CSS -->
-  <link rel="stylesheet" href="styles/animate.min.css" type="text/css">
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="styles/creative.css" type="text/css">
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="styles/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link href="/bower_components/bootstrap-star-rating/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="styles/animate.min.css" type="text/css">
+    <link rel="stylesheet" href="styles/creative.css" type="text/css">
+    <!-- endbower -->
+    <!-- endbuild -->
 
 </head>
 
@@ -151,7 +151,7 @@
         <div class="row no-gutter">
             <div class="col-lg-4 col-sm-6">
                 <a href="#" class="portfolio-box">
-                    <img src="img/portfolio/1.jpg" class="img-responsive" alt="">
+                    <img src="images/portfolio/1.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -166,7 +166,7 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <a href="#" class="portfolio-box">
-                    <img src="img/portfolio/2.jpg" class="img-responsive" alt="">
+                    <img src="images/portfolio/2.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -181,7 +181,7 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <a href="#" class="portfolio-box">
-                    <img src="img/portfolio/3.jpg" class="img-responsive" alt="">
+                    <img src="images/portfolio/3.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -196,7 +196,7 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <a href="#" class="portfolio-box">
-                    <img src="img/portfolio/4.jpg" class="img-responsive" alt="">
+                    <img src="images/portfolio/4.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -211,7 +211,7 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <a href="#" class="portfolio-box">
-                    <img src="img/portfolio/5.jpg" class="img-responsive" alt="">
+                    <img src="images/portfolio/5.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -226,7 +226,7 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <a href="#" class="portfolio-box">
-                    <img src="img/portfolio/6.jpg" class="img-responsive" alt="">
+                    <img src="images/portfolio/6.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -287,17 +287,53 @@
     </div>
 </section>
 
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-left",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+</script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-<!-- Plugin JavaScript -->
-<script src="js/jquery.easing.min.js"></script>
-<script src="js/jquery.fittext.js"></script>
-<script src="js/wow.min.js"></script>
+    ga('create', 'UA-73481201-1', 'auto');
+    ga('send', 'pageview');
 
-<!-- Custom Theme JavaScript -->
-<script src="js/creative.js"></script>
+</script>
+
+<!-- build:js scripts/main.js -->
+<script src="scripts/main.js"></script>
+<script src="scripts/creative.js"></script>
+<script src="scripts/jquery.easing.min.js"></script>
+<script src="scripts/jquery.fittext.js"></script>
+<script src="scripts/wow.min.js"></script>
+<!-- endbuild -->
+
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/bower_components/bootstrap-star-rating/js/star-rating.min.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+</body>
 </html>
