@@ -7,9 +7,10 @@ if (window.location.hostname === "localhost") {
 
 $(document).ready(function () {
     checkForProfile();
+    //checkForPartner();
 });
 
-function checkForProfile() {
+function checkForPartner() {
     var linked_ID = localStorage.getItem("linked_profile_id");
 
     if (linked_ID === null) {
@@ -17,18 +18,20 @@ function checkForProfile() {
     } else {
         $('#partner_form').hide();
     }
-};
-
-if (localStorage.getItem("profile_firstname")) {
-    var profile_firstname = localStorage.getItem("profile_firstname");
-    console.log("Found profile firstname from storage " + profile_firstname);
-    $('#profile-name').text(profile_firstname);
-    $('#profile').hide();
 }
 
-if (localStorage.getItem("profile_id") === null) {
-    console.log("No profile found. redirecting to welcome");
-    window.location = 'welcome.html';
+function checkForProfile () {
+    if (localStorage.getItem("profile_firstname")) {
+        var profile_firstname = localStorage.getItem("profile_firstname");
+        console.log("Found profile firstname from storage " + profile_firstname);
+        $('#profile-name').text(profile_firstname);
+        $('#profile').hide();
+    }
+
+    if (localStorage.getItem("profile_id") === null) {
+        console.log("No profile found. redirecting to welcome");
+        window.location = 'welcome.html';
+    }
 }
 
 $('input[type=radio][name=received]').change(function () {
