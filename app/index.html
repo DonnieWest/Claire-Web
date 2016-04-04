@@ -1,6 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,207 +9,42 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
 
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" type="text/css" media="all"/>
-    <link href="/bower_components/bootstrap-star-rating/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" type="text/css"/>
-
-    <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-
-  </head>
-  <body>
-    <!--[if lt IE 10]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-    <div class="container">
-
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Love Bank <i class="glyphicon glyphicon-piggy-bank"></i></a>
-          </div>
-          <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/">Deposit</a></li>
-              <li><a href="/Mood.html">Mood</a></li>
-              <li><a href="/LoveBank.html">LoveBank</a></li>
-              <li><a id="profile-name" href="/Profile.html"></a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      <div class="row marketing">
-
-        <div class="row" id="partner_form">
-          <h2>Your partners email address</h2>
-          <p>This is used to link actions received by partners and must be completed before you can make a deposit.</p>
-          <div id="linked_FirstName"></div>
-
-          <form id="linked-profile-form" action="/profiles?filter[email]=" method="get" accept-charset="utf-8">
-            <fieldset class="form-group col-sm-12">
-              <label for="email">Email</label>
-              <input class="form-control" type="email" name="email">
-            </fieldset>
-            <div class="form-group col-sm-12">
-              <button type="submit" class="btn btn-primary">Connect</button>
-            </div>
-          </form>
-        </div>
-
-          <h2>Credit Entry</h2>
-          <form id="entry" action="/entries" method="post" accept-charset="utf-8" class="form-horizontal" role="form">
-
-            <!--div class="form-group">
-              <label class="col-sm-4 control-label">Action received or given:</label>
-              <div class="col-sm-8">
-                <label class="radio-inline"><input type="radio" name="received" value="received"> Received</label>
-                <label class="radio-inline"><input type="radio" name="received" value="given"> Given</label>
-              </div>
-            </div-->
-
-            <div class="form-group col-sm-12">
-              <p>What are you giving your partner credit for and how did it speak to you.</p>
-              <label class="control-label">Details:</label>
-              <div>
-                <textarea class="form-control" type="text" name="description" rows="5"></textarea>
-              </div>
-            </div>
-
-            <!-- <div class="form-group">
-              <label class="col-sm-4 control-label">Share with your partner:</label>
-              <div class="col-sm-8">
-                <label class="radio-inline"><input type="checkbox" name="keep_private"> Keep Private</label>
-              </div>
-            </div>
-
-            <div class="control-group" style="display:none">
-              <label for="date-picker-2" class="col-sm-4 control-label">Occurred On:</label>
-              <div class="controls">
-                <div class="input-group col-sm-6 col-md-4">
-                  <input id="date-picker-2" type="text" class="date-picker form-control" readonly/>
-                  <label for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <p>This is an optional choice. Specify a date if the action occurred in the past.</p> -->
-
-            <div class="form-group col-sm-12" id="rating-element">
-              <label class="control-label">Credit Rating:</label>
-              <div>
-                <input id="rating" type="number" class="rating" data-size="xs" min=0 max=5 step=1 required>
-              </div>
-            </div>
-
-            <div class="form-group col-sm-12">
-              <button type="submit" class="btn btn-primary">Save Credit</button>
-            </div>
-
-          </form>
-
-      </div>
-
-      <div class="footer">
-        <p>♥ from the LoveBank team</p>
-      </div>
-    </div>
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-73481201-1', 'auto');
-      ga('send', 'pageview');
-
-    </script>
-
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/moment/moment.js"></script>
-    <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
-    <script src="/bower_components/bootstrap-star-rating/js/star-rating.min.js"></script>
-    <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
-    <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+</head>
+<body>
+<!--[if lt IE 10]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
 
 
-    <!-- build:js scripts/vendor/modernizr.js -->
-    <script src="/bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-    <!-- build:js scripts/plugins.js -->
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
-    <!-- endbuild -->
+    ga('create', 'UA-73481201-1', 'auto');
+    ga('send', 'pageview');
 
-    <!-- build:js scripts/main.js -->
-    <script src="scripts/main.js"></script>
-    <!-- endbuild -->
+</script>
 
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script>
-      toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": false,
-        "positionClass": "toast-bottom-left",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-      }
-    </script>
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
 
-    <script type="text/javascript">
-      // Date picker for Entry form.
-      $(function() {
-        $('.date-picker').datetimepicker(
-          {
-            format: 'MM/DD/YYYY',
-            maxDate: $.now(),
-            defaultDate: new Date(),
-            ignoreReadonly: true}).on('dp.change', function (e) {
-            $('date-picker-2').val(e.date.toString());
-          }
-        );
-      });
-    </script>
+<!-- build:js scripts/main.js -->
+<script src="scripts/index.js"></script>
+<!-- endbuild -->
 
-  </body>
+</body>
 </html>
