@@ -1,6 +1,6 @@
 var apiDomainURL = "";
 if (window.location.hostname === "localhost") {
-    apiDomainURL = "http://localhost:3000";
+    apiDomainURL = "https://frank.treasury.love";
 } else {
     apiDomainURL = "https://frank.treasury.love";
 }
@@ -25,12 +25,6 @@ function checkForProfile () {
         var profile_firstname = localStorage.getItem("profile_firstname");
         console.log("Found profile firstname from storage " + profile_firstname);
         $('#profile-name').text(profile_firstname);
-        $('#profile').hide();
-    }
-
-    if (localStorage.getItem("profile_id") === null) {
-        console.log("No profile found. redirecting to welcome");
-        window.location = 'welcome.html';
     }
 }
 
@@ -193,6 +187,30 @@ $('#linked-profile-form').submit(function () {
     }).error(function (json) {
         console.log(json);
         toastr["error"]("There was a problem linking to the account.");
+    });
+
+    /* stop form from submitting normally */
+    event.preventDefault();
+});
+
+$('#start-with-email').submit(function () {
+    var email = $(this).find('input[name="email"]').val();
+    $.ajax({
+        type: $(this).attr('method'),
+        url: apiDomainURL + $(this).attr('action') + email,
+        headers: {
+            Accept: "application/json"
+        },
+        dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+    }).success(function (json) {
+        console.log("JSON success response", json);
+        if (json.data.length == 1) {
+            console.log("Found profile, saving to storage");
+            saveProfile(json);
+            window.location = 'LinkProfile.html';
+        }
+    }).error(function (json) {
+        console.log(json);
     });
 
     /* stop form from submitting normally */
