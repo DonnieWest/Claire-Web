@@ -208,6 +208,8 @@ $('#start-with-email').submit(function () {
             console.log("Found profile, saving to storage");
             saveProfile(json);
             window.location = 'LinkProfile.html';
+        } else {
+            window.location = 'Profile.html'
         }
     }).error(function (json) {
         console.log(json);
