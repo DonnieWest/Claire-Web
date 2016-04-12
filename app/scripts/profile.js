@@ -22,8 +22,8 @@ if (profile_firstname) {
     }
 }
 
-$('#profile').submit(function () {
-    var firstName = $(this).find('input[name="firstname"]').val();
+$("#profile").submit(function () {
+    var firstName = $(this).find('input[name='firstname']').val();
     var lastName = $(this).find('input[name="lastname"]').val();
     var email = $(this).find('input[name="email"]').val();
     var dat = '{"data": {"type":"profiles", "attributes":{"firstname":"' + firstName + '", "lastname":"' + lastName +
