@@ -43,7 +43,7 @@ $('#profile').submit(function () {
         localStorage.setItem("profile_id", json.data.id);
         localStorage.setItem("profile_firstname", firstName);
         $('#profile-name').text("Welcome " + firstName);
-        $('#profile').hide();
+        $(this).hide();
         toastr["success"]("Profile saved.", "Success!");
     }).error(function (json) {
         console.log(json);

@@ -1,1 +1,0 @@
-"use strict";$(document).ready(function(){null===localStorage.getItem("profile_id")?(console.log("No profile found. redirecting to welcome"),window.location="welcome.html"):window.location="journal.html"});
