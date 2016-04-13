@@ -8,7 +8,16 @@ if (window.location.hostname === "localhost") {
 $(document).ready(function () {
     checkForProfile();
     //checkForPartner();
+    setProfileLink();
 });
+
+function setProfileLink()
+{
+    var profile_firstname = localStorage.getItem("profile_firstname");
+    if (profile_firstname) {
+        $("#profile_link").text("Jared")
+    }
+}
 
 function checkForPartner() {
     var linked_ID = localStorage.getItem("linked_profile_id");

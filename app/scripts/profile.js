@@ -12,6 +12,18 @@ if (window.location.hostname === "localhost") {
     mailDomainURL = "https://frank-mail.treasury.love";
 }
 
+$(document).ready(function () {
+    setProfileLink();
+});
+
+function setProfileLink()
+{
+    var profile_firstname = localStorage.getItem("profile_firstname");
+    if (profile_firstname) {
+        $("#profile_link").text("Jared");
+    }
+}
+
 var profile_firstname = localStorage.getItem("profile_firstname");
 if (profile_firstname) {
     var profile_form = $('#profile');
@@ -23,7 +35,7 @@ if (profile_firstname) {
 }
 
 $("#profile").submit(function () {
-    var firstName = $(this).find('input[name='firstname']').val();
+    var firstName = $(this).find('input[name="firstname"]').val();
     var lastName = $(this).find('input[name="lastname"]').val();
     var email = $(this).find('input[name="email"]').val();
     var dat = '{"data": {"type":"profiles", "attributes":{"firstname":"' + firstName + '", "lastname":"' + lastName +
