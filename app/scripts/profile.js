@@ -20,7 +20,7 @@ function setProfileLink()
 {
     var profile_firstname = localStorage.getItem("profile_firstname");
     if (profile_firstname) {
-        $("#profile_link").text("Jared");
+        $("#profile_link").text(profile_firstname);
     }
 }
 
