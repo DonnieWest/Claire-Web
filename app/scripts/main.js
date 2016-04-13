@@ -109,6 +109,12 @@ $('#mood').submit(function () {
 $('#entry').submit(function () {
     //var occurred_on = $('#date-picker-2').val();
     var rating = $('#rating').val();
+
+    // users do not like to see a rating of zero.
+    // setting this to null so that the averages are not impacted.
+    if (rating == 0) {
+        rating = null;
+    }
     //var received = $('input[name=received]:checked', $(this)).val();
     //if (received === 'given') {
     //  received = false;
@@ -124,7 +130,7 @@ $('#entry').submit(function () {
         description += this.value;
         description += "\r\n";
     });
-    
+
     var profile_id = localStorage.getItem("profile_id");
     var profile_firstname = localStorage.getItem("profile_firstname");
     var linked_ID = localStorage.getItem("linked_profile_id");
