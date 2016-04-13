@@ -1,6 +1,6 @@
 var apiDomainURL = "";
 if (window.location.hostname === "localhost") {
-    apiDomainURL = "https://frank.treasury.love";
+    apiDomainURL = "http://localhost:3000";
 } else {
     apiDomainURL = "https://frank.treasury.love";
 }
@@ -39,7 +39,8 @@ $('input[type=radio][name=received]').change(function () {
 
 $('#love-bank').submit(function () {
     var rating = $('#rating').val();
-    var description = JSON.stringify($(this).find('textarea').val());
+    var action = $(this).find('textarea').val();
+    var description = JSON.stringify();
     var profile_id = localStorage.getItem("profile_id");
     var profile_firstname = localStorage.getItem("profile_firstname");
     var dat = '{ "data":' +
@@ -117,7 +118,13 @@ $('#entry').submit(function () {
     //}
 
     //var keep_private = $('input[name=keep_private]:checked', $(this)).val();
-    var description = JSON.stringify($(this).find('textarea').val());
+    var description = "";
+
+    $("textarea").each(function(){
+        description += this.value;
+        description += "\r\n";
+    });
+    
     var profile_id = localStorage.getItem("profile_id");
     var profile_firstname = localStorage.getItem("profile_firstname");
     var linked_ID = localStorage.getItem("linked_profile_id");
@@ -134,7 +141,7 @@ $('#entry').submit(function () {
     var dat = '{ "data":' +
         '{ "type": "entries","relationships": {' +
         '"profile":{ "data":{ "type": "profiles", "id": "' + profile_id + '" }}},' +
-        '"attributes": {"received":"true","private":"false","note":' + description
+        '"attributes": {"received":"true","private":"false","note":' + JSON.stringify(description)
         + ', "rating":' + rating + ',"linked-profile-id":' + linked_ID + '}}}';
 
     console.log(dat);
