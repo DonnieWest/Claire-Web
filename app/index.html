@@ -2,7 +2,7 @@
 <html class="no-js" lang="">
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="">
+    <meta name="description" content="Love Journal is just the perfect tool to tell your partner how much you appreciate them. Write in your journal often or daily to tell them the things they have done that spoke love to you.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Love Journal</title>
 
@@ -12,16 +12,28 @@
     <!-- Custom Fonts -->
     <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
     <link href="/bower_components/bootstrap-star-rating/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="styles/animate.min.css" type="text/css">
     <link rel="stylesheet" href="styles/creative.css" type="text/css">
     <!-- endbower -->
     <!-- endbuild -->
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-73481201-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
 
 </head>
 
@@ -59,9 +71,6 @@
                 <li>
                     <a class="page-scroll" href="index.html#contact">Contact</a>
                 </li>
-                <li>
-                    <a class="page-scroll" id="profile_link" href="Profile.html">Profile</a>
-                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -79,7 +88,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-2"></div>
                 <div class="col-lg-6 col-md-8">
-                    <form id="start-with-email" action="/profiles?filter[email]=" method="get" accept-charset="utf-8">
+                    <form id="start-with-email" action="Account.html" method="get" accept-charset="utf-8">
                         <fieldset class="form-group col-sm-12">
                             <input class="form-control" type="email" name="email" id="email" placeholder="Email Address">
                         </fieldset>
@@ -101,7 +110,7 @@
                 <h2 class="section-heading">We've got what you need!</h2>
                 <hr class="light">
                 <p class="text-faded">
-                    Love Treasury is just the perfect tool to tell your partner how much you appreciate them. Write in your journal often or daily to tell them the things they have done that spoke love to you.
+                    Love Journal is just the perfect tool to tell your partner how much you appreciate them. Write in your journal often or daily to tell them the things they have done that spoke love to you.
                 </p>
             </div>
         </div>
@@ -321,29 +330,12 @@
     }
 </script>
 
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-73481201-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
-
 <!-- build:js scripts/main.js -->
 <script src="scripts/main.js"></script>
-<script src="scripts/profileutils.js"></script>
 <script src="scripts/creative.js"></script>
 <script src="scripts/jquery.easing.min.js"></script>
 <script src="scripts/jquery.fittext.js"></script>
 <script src="scripts/wow.min.js"></script>
-<!-- endbuild -->
-
-<!-- build:js scripts/index.js -->
-<script src="scripts/index.js"></script>
 <!-- endbuild -->
 
 </body>

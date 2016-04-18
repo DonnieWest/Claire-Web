@@ -13,18 +13,9 @@
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="assets/css/gsdk-base.css" rel="stylesheet"/>
 
-
   <!-- Custom Fonts -->
   <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
-
-  <!-- build:css styles/vendor.css -->
-  <!-- bower:css -->
-  <link href="/bower_components/bootstrap-star-rating/css/star-rating.min.css" media="all" rel="stylesheet"
-        type="text/css"/>
-  <!-- endbower -->
-  <!-- endbuild -->
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
   <script>
@@ -91,6 +82,7 @@
 </nav>
 
 <div class="image-container set-full-height" style="background-image: url('images/open-journals1.jpg')">
+
   <!--   Big container   -->
   <div class="container">
     <div class="row">
@@ -100,50 +92,67 @@
         <div class="wizard-container">
 
           <div class="card wizard-card ct-wizard-orange" id="wizardProfile">
-            <form id="entry" action="/entries" method="post" accept-charset="utf-8">
+            <form id="profile" action="/profiles" method="post" accept-charset="utf-8">
               <!--        You can switch "ct-wizard-orange"  with one of the next bright colors: "ct-wizard-blue", "ct-wizard-green", "ct-wizard-orange", "ct-wizard-red"             -->
 
               <div class="wizard-header">
                 <h3>
-                  <b> JOURNAL ENTRY </b> <br>
+                  <b>BUILD</b> YOUR PROFILE <br>
                 </h3>
               </div>
               <ul>
-                <li><a href="#journal" data-toggle="tab">
-                  <i class="fa fa-envira" aria-hidden="true"></i>
-                  <i class="fa fa-envira" aria-hidden="true"></i>
-                  <i class="fa fa-envira" aria-hidden="true"></i>
-                </a></li>
-                <!--<li><a href="#address" data-toggle="tab">Address</a></li>-->
+                <li><a href="#account" data-toggle="tab">Account</a></li>
+                <li><a href="#partner" data-toggle="tab">Partner</a></li>
               </ul>
 
               <div class="tab-content">
-                <div class="tab-pane" id="journal">
+                <div class="tab-pane" id="account">
                   <div class="row">
-                    <h4 class="info-text"></h4>
+                    <h4 class="info-text"> Let's start with the basic information</h4>
 
                     <div class="col-sm-10 col-sm-offset-1">
                       <div class="form-group">
-                        <label for="description">What are you giving your partner credit for?</label>
-                        <textarea class="form-control" name="description" id="description" rows="5"></textarea>
+                        <label>Email
+                          <small>(required)</small>
+                        </label>
+                        <input name="email" type="email" class="form-control" placeholder="email address">
                       </div>
                     </div>
 
-                    <div class="col-sm-10 col-sm-offset-1">
+                    <div class="col-sm-4 col-sm-offset-1">
+                    </div>
+                    <div class="col-sm-6">
                       <div class="form-group">
-                        <label for="emotions">How did it speak to you?</label>
-                        <textarea class="form-control" name="emotions" id="emotions" rows="5"></textarea>
+                        <label>First Name
+                          <small>(required)</small>
+                        </label>
+                        <input name="firstname" type="text" class="form-control" placeholder="Andrew...">
                       </div>
-                    </div>
-
-                    <div class="col-sm-10 col-sm-offset-1">
-                      <label for="rating" class="control-label">Entry Rating:</label>
-                      <div>
-                        <input id="rating" type="number" class="rating" data-size="sm" min=0 max=5 step=1 required>
+                      <div class="form-group">
+                        <label>Last Name
+                          <small>(required)</small>
+                        </label>
+                        <input name="lastname" type="text" class="form-control" placeholder="Smith...">
                       </div>
                     </div>
                   </div>
+                </div>
 
+                <div class="tab-pane" id="partner">
+                  <h4 class="info-text"> Your Partner's Email Address</h4>
+                  <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                      <div class="col-sm-10 col-sm-offset-1">
+                        <div class="form-group">
+                          <label>Partner's Email
+                            <small>(required)</small>
+                          </label>
+                          <input name="partner_email" type="email" class="form-control" placeholder="email address">
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
               </div>
               <div class="wizard-footer">
@@ -152,6 +161,11 @@
                          value='Next'/>
                   <input type='submit' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish'
                          value='Finish'/>
+                </div>
+
+                <div class="pull-left">
+                  <input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous'
+                         value='Previous'/>
                 </div>
                 <div class="clearfix"></div>
               </div>
@@ -171,14 +185,16 @@
 <!-- endbower -->
 <!-- endbuild -->
 
-<!-- build:js scripts/main.js -->
-<script src="scripts/main.js"></script>
-<!-- endbuild -->
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<!-- build:js scripts/profile.js -->
+<script src="scripts/profile.js"></script>
+<!-- endbuild -->
+
 <script src="assets/js/wizard.js"></script>
 
 </body>
