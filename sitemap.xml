@@ -8,27 +8,22 @@
 
 <url>
   <loc>https://me.treasury.love/</loc>
-  <lastmod>2016-04-09T03:12:29+00:00</lastmod>
+  <lastmod>2016-04-17T03:12:29+00:00</lastmod>
   <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>https://me.treasury.love/index.html</loc>
-  <lastmod>2016-04-09T03:12:29+00:00</lastmod>
+  <lastmod>2016-04-17T03:12:29+00:00</lastmod>
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://me.treasury.love/journal.html</loc>
-  <lastmod>2016-04-09T03:12:29+00:00</lastmod>
+  <loc>https://me.treasury.love/Journal.html</loc>
+  <lastmod>2016-04-17T03:12:29+00:00</lastmod>
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://me.treasury.love/welcome.html</loc>
-  <lastmod>2016-04-09T03:12:29+00:00</lastmod>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>https://me.treasury.love/Profile.html</loc>
-  <lastmod>2016-04-09T03:12:29+00:00</lastmod>
+  <loc>https://me.treasury.love/Account.html</loc>
+  <lastmod>2016-04-17T03:12:29+00:00</lastmod>
   <changefreq>weekly</changefreq>
 </url>
 </urlset>
