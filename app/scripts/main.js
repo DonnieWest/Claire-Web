@@ -9,8 +9,8 @@ if (window.location.hostname === "localhost") {
 }
 
 $(document).ready(function () {
-  checkForProfile();
   checkForUpgrade();
+  checkForProfile();
   setProfileLink();
 });
 
