@@ -44,7 +44,7 @@ function checkForUpgrade()
   if (v == null) {
     localStorage.setItem('version', 1);
   } else {
-    if (version < v) {
+    if (version > v) {
       performUpgrade();
     }
   }
