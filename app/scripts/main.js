@@ -74,8 +74,6 @@ $('#entry').submit(function () {
     '"attributes": {"received":"true","private":"false","note":' + JSON.stringify(description)
     + ', "rating":' + rating + ',"linked-profile-id":' + linked_id + '}}}';
 
-  console.log("Submitting journal entry " + data);
-
   $.ajax({
     type: $(this).attr('method'),
     url: apiDomainURL + $(this).attr('action'), //submits it to the given url of the form
