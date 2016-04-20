@@ -21,6 +21,7 @@ function setProfileLink() {
   const profile = JSON.parse(localStorage.getItem('profile'));
   if (profile != null) {
     $("#profile_link").text(JSON.parse(localStorage.getItem('profile')).firstname);
+    $("#logout_link").show();
   }
 }
 

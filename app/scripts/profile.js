@@ -114,6 +114,7 @@ function setProfileLink() {
   const profile_firstname = JSON.parse(localStorage.getItem('profile')).firstname;
   if (profile_firstname) {
     $("#profile_link").text(profile_firstname);
+    $("#logout_link").show();
   }
 }
 
