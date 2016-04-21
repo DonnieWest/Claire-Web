@@ -5,3 +5,5 @@ bower_components
 test/bower_components
 .idea/
 *.log
+aws-credentials.json
+.awspublish-treasury.love
