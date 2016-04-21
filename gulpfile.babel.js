@@ -4,6 +4,11 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 import del from 'del';
 import {stream as wiredep} from 'wiredep';
+//import clean from 'gulp-clean';
+
+var awspublish = require('gulp-awspublish');
+var fs          = require('fs');
+var clean       = require('gulp-clean');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -75,7 +80,9 @@ gulp.task('extras', () => {
   }).pipe(gulp.dest('dist'));
 });
 
-gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
+gulp.task('clean', function() {
+  return gulp.src('dist', { read: false }).pipe(clean());
+});
 
 gulp.task('serve', ['styles', 'scripts', 'fonts'], () => {
   browserSync({
@@ -159,4 +166,33 @@ gulp.task('deploy', ['build'], () => {
     .pipe($.subtree({
       branch: 'master'
     }))
+});
+
+gulp.task('publish', function() {
+
+  // create a new publisher using S3 options
+  // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property
+  var publisher = awspublish.create(JSON.parse(fs.readFileSync('./aws-credentials.json')));
+
+  // define custom headers
+  var headers = {
+    'Cache-Control': 'max-age=315360000, no-transform, public'
+    // ...
+  };
+
+  return gulp.src('./dist/**')
+    // gzip, Set Content-Encoding headers and add .gz extension
+    .pipe(awspublish.gzip())
+
+    // publisher will add Content-Length, Content-Type and headers specified above
+    // If not specified it will set x-amz-acl to public-read by default
+    .pipe(publisher.publish(headers))
+
+    .pipe(publisher.sync())
+
+    // create a cache file to speed up consecutive uploads
+    .pipe(publisher.cache())
+
+    // print upload updates to console
+    .pipe(awspublish.reporter());
 });
