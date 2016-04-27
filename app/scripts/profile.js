@@ -28,8 +28,8 @@ $(document).ready(function () {
     getProfile(param_email).then(function (result) {
       if (result.data.length == 1) {
         console.log("Saving profile");
-        saveProfile(result);
-        window.location = "AccountSuccess.html";
+        saveProfile(result.data[0]);
+        window.location = "Account.html";
       } else {
         $("#profile").find('input[name="email"]').val(param_email);
       }
@@ -57,7 +57,7 @@ function handleExistingProfile(email) {
   getProfile(email).then(function (result) {
     if (result.data.length == 1) {
       console.log("Saving profile");
-      saveProfile(result);
+      saveProfile(result.data[0]);
     }
   }).catch(function (result) {
     console.log("Promise failed " + result);
@@ -131,9 +131,9 @@ $("#profile").submit(function () {
   // just finish the form and setup the partner link
   if (JSON.parse(localStorage.getItem('profile')) == null) {
     createProfile(data).then(function (result) {
-      if (result.data.length == 1) {
+      if (result.data != null) {
         console.log("Saving profile");
-        saveProfile(result);
+        saveProfile(result.data);
         setupPartner(partner_email);
       }
     }).catch(function (result) {
@@ -177,8 +177,8 @@ function createProfile(data) {
  */
 function saveProfile(json) {
   console.log("Saving profile to local storage " + json);
-  localStorage.setItem('profile', JSON.stringify(json.data[0].attributes));
-  localStorage.setItem('profile_id', JSON.stringify(json.data[0].id));
+  localStorage.setItem('profile', JSON.stringify(json.attributes));
+  localStorage.setItem('profile_id', JSON.stringify(json.id));
   console.log('retrievedObject: ', JSON.parse(localStorage.getItem('profile')));
   loadProfileToForm();
 }
