@@ -7,3 +7,4 @@ test/bower_components
 *.log
 aws-credentials.json
 .awspublish-treasury.love
+.awspublish-www.treasury.love
