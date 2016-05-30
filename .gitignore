@@ -9,3 +9,5 @@ aws-credentials.json
 .awspublish-treasury.love
 .awspublish-www.treasury.love
 dist
+aws-credentials-me.json
+.awspublish-me.treasury.love
