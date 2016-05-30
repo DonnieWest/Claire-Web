@@ -124,8 +124,8 @@ $("#profile").submit(function () {
   const lastName = $(this).find('input[name="lastname"]').val();
   const email = $(this).find('input[name="email"]').val();
   const partner_email = $(this).find('input[name="partner_email"]').val();
-  const data = '{"data": {"type":"profiles", "attributes":{"firstname":"' + firstName + '", "lastname":"' + lastName +
-    '", "email":"' + email + '"}}}';
+  const data = '{"data": {"type":"frank-profiles", "attributes":{"firstname":"' + firstName + '", "lastname":"' + lastName +
+    '", "email":"' + email + '", "linked-email":"' + partner_email +'"}}}';
 
   // if we have a local profile, do not create the profile.
   // just finish the form and setup the partner link
@@ -139,8 +139,6 @@ $("#profile").submit(function () {
     }).catch(function (result) {
       console.log("Promise failed " + result);
     });
-  } else {
-    setupPartner(partner_email);
   }
 
   /* stop form from submitting normally */
@@ -158,7 +156,7 @@ function createProfile(data) {
   return new Promise(function (resolve, reject) {
     $.ajax({
       type: "post",
-      url: apiDomainURL + '/profiles', //submits it to the given url of the form
+      url: apiDomainURL + '/frank-profiles', //submits it to the given url of the form
       data: data,
       headers: {
         Accept: "application/json",
@@ -208,14 +206,14 @@ function loadProfileToForm() {
  */
 function setupPartner(email) {
   getProfile(email).then(function (result) {
+    debugger;
     if (result.data.length == 1) {
       console.log("Partner email found " + result);
       localStorage.setItem('linked_profile', JSON.stringify(result.data[0].attributes));
       localStorage.setItem('linked_profile_id', JSON.stringify(result.data[0].id));
-    } else {
-      invitePartner(email);
-      console.log("Invite sent to partner");
     }
+    invitePartner(email);
+    console.log("Invite sent to partner");
     window.location = "AccountSuccess.html";
   }).catch(function (result) {
     console.log("Promise failed " + result);
@@ -233,7 +231,7 @@ function getProfile(email) {
   return new Promise(function (resolve, reject) {
     $.ajax({
       type: 'get',
-      url: apiDomainURL + '/profiles?filter[email]=' + email,
+      url: apiDomainURL + '/frank-profiles?filter[email]=' + email,
       headers: {
         Accept: "application/json"
       },
@@ -255,7 +253,7 @@ function getProfileById(id) {
   return new Promise(function (resolve, reject) {
     $.ajax({
       type: 'get',
-      url: apiDomainURL + '/profiles/' + id,
+      url: apiDomainURL + '/frank-profiles/' + id,
       headers: {
         Accept: "application/json"
       },

@@ -70,8 +70,8 @@ $('#entry').submit(function () {
   const profile_id = JSON.parse(localStorage.getItem('profile_id'));
   const linked_id = JSON.parse(localStorage.getItem('linked_profile_id'));
   var data = '{ "data":' +
-    '{ "type": "entries","relationships": {' +
-    '"profile":{ "data":{ "type": "profiles", "id": "' + profile_id + '" }}},' +
+    '{ "type": "frank-entries","relationships": {' +
+    '"frank-profile":{ "data":{ "type": "frank-profiles", "id": "' + profile_id + '" }}},' +
     '"attributes": {"received":"true","private":"false","note":' + JSON.stringify(description)
     + ', "rating":' + rating + ',"linked-profile-id":' + linked_id + '}}}';
 
