@@ -159,7 +159,7 @@ function createProfile(data) {
       url: apiDomainURL + '/frank-profiles', //submits it to the given url of the form
       data: data,
       headers: {
-        Accept: "application/json",
+        Accept: 'application/vnd.api+json',
         'Content-Type': 'application/vnd.api+json'
       },
       dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
@@ -233,7 +233,7 @@ function getProfile(email) {
       type: 'get',
       url: apiDomainURL + '/frank-profiles?filter[email]=' + email,
       headers: {
-        Accept: "application/json"
+        Accept: 'application/vnd.api+json',
       },
       dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
     }).success(function (json) {
@@ -255,7 +255,7 @@ function getProfileById(id) {
       type: 'get',
       url: apiDomainURL + '/frank-profiles/' + id,
       headers: {
-        Accept: "application/json"
+        Accept: 'application/vnd.api+json',
       },
       dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
     }).success(function (json) {
@@ -278,7 +278,7 @@ function invitePartner(email) {
       invite: {email: email, id: localStorage.getItem("profile_id")}
     },
     headers: {
-      Accept: "application/json"
+      Accept: 'application/vnd.api+json',
     },
     dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
   }).success(function (json) {

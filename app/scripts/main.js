@@ -80,7 +80,7 @@ $('#entry').submit(function () {
     url: apiDomainURL + $(this).attr('action'), //submits it to the given url of the form
     data: data,
     headers: {
-      Accept: "application/json",
+      Accept: 'application/vnd.api+json',
       'Content-Type': 'application/vnd.api+json'
     },
     dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
