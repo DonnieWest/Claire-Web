@@ -28,10 +28,10 @@ function setProfileLink() {
 function checkForProfile()
 {
   const profile = JSON.parse(localStorage.getItem('profile'));
-  if (profile == null || profile.length == 0) {
-    console.log("Window Location " + window.location);
-    if (window.location.href.indexOf("journal.html") > -1) {
-      window.location = "Account.html";
+  if (profile != null || profile.length >= 0) {
+    var path = window.location.pathname;
+    if (path.indexOf("journal.html") == -1 && path.indexOf("html") == -1) {
+      window.location = "journal.html";
     }
   }
 }
