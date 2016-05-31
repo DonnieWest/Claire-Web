@@ -134,7 +134,7 @@ $("#profile").submit(function () {
       if (result.data != null) {
         console.log("Saving profile");
         saveProfile(result.data);
-        setupPartner(partner_email);
+        window.location = "AccountSuccess.html";
       }
     }).catch(function (result) {
       console.log("Promise failed " + result);
@@ -177,7 +177,7 @@ function saveProfile(json) {
   console.log("Saving profile to local storage " + json);
   localStorage.setItem('profile', JSON.stringify(json.attributes));
   localStorage.setItem('profile_id', JSON.stringify(json.id));
-  console.log('retrievedObject: ', JSON.parse(localStorage.getItem('profile')));
+  console.log('Profile saved to local storage: ', JSON.parse(localStorage.getItem('profile')));
   loadProfileToForm();
 }
 
