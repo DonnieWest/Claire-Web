@@ -27,7 +27,6 @@ $(document).ready(function () {
     // if it's a known user
     getProfile(param_email).then(function (result) {
       if (result.data.length == 1) {
-        console.log("Saving profile");
         saveProfile(result.data[0]);
         window.location = "Account.html";
       } else {
@@ -134,7 +133,6 @@ $("#profile").submit(function () {
       if (result.data != null) {
         console.log("Saving profile");
         saveProfile(result.data);
-        window.location = "AccountSuccess.html";
       }
     }).catch(function (result) {
       console.log("Promise failed " + result);
@@ -143,6 +141,7 @@ $("#profile").submit(function () {
 
   /* stop form from submitting normally */
   event.preventDefault();
+  setupPartner(partner_email);
 
 });
 
@@ -174,7 +173,6 @@ function createProfile(data) {
  * @param json
  */
 function saveProfile(json) {
-  console.log("Saving profile to local storage " + json);
   localStorage.setItem('profile', JSON.stringify(json.attributes));
   localStorage.setItem('profile_id', JSON.stringify(json.id));
   console.log('Profile saved to local storage: ', JSON.parse(localStorage.getItem('profile')));
@@ -206,19 +204,17 @@ function loadProfileToForm() {
  */
 function setupPartner(email) {
   getProfile(email).then(function (result) {
-    debugger;
     if (result.data.length == 1) {
       console.log("Partner email found " + result);
       localStorage.setItem('linked_profile', JSON.stringify(result.data[0].attributes));
       localStorage.setItem('linked_profile_id', JSON.stringify(result.data[0].id));
+    } else {
+      console.log ("No partner email found. Oops " + email);
     }
-    invitePartner(email);
-    console.log("Invite sent to partner");
-    window.location = "AccountSuccess.html";
   }).catch(function (result) {
     console.log("Promise failed " + result);
-    window.location = "AccountSuccess.html";
   });
+  window.location = "AccountSuccess.html";
 }
 
 /**
@@ -234,10 +230,11 @@ function getProfile(email) {
       url: apiDomainURL + '/frank-profiles?filter[email]=' + email,
       headers: {
         Accept: 'application/vnd.api+json',
+        'Content-Type': 'application/vnd.api+json'
       },
       dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
     }).success(function (json) {
-      console.log("JSON success response" + json);
+      console.log("success - getProfile by email " + email);
       resolve(json);
     }).error = reject;
   });
@@ -256,36 +253,12 @@ function getProfileById(id) {
       url: apiDomainURL + '/frank-profiles/' + id,
       headers: {
         Accept: 'application/vnd.api+json',
+        'Content-Type': 'application/vnd.api+json'
       },
       dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
     }).success(function (json) {
       console.log("JSON success response" + json);
       resolve(json);
     }).error = reject;
-  });
-}
-
-/**
- * Send an invite by email. The partner doesn't already exist.
- *
- * @param email
- */
-function invitePartner(email) {
-  $.ajax({
-    type: 'post',
-    url: mailDomainURL + '/invite_partner',
-    data: {
-      invite: {email: email, id: localStorage.getItem("profile_id")}
-    },
-    headers: {
-      Accept: 'application/vnd.api+json',
-    },
-    dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
-  }).success(function (json) {
-    console.log("JSON success response", json);
-    toastr["info"]("Invitation successfully sent to " + email + ". <br /> Make sure to revisit this page once your partner registers.", "Sent!");
-  }).error(function (json) {
-    console.log(json);
-    toastr["error"]("There was a problem finding the account.");
   });
 }
