@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Love Treasury Dashboard</title>
+    <meta name="description" content="Love Treasury Dashboard">
+    <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.1/es6-shim.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+  </head>
+
+  <body>
+    <h1>Love Treasury Dashboard</h1>
+    <form style="display: flex; flex-direction: column;" id="form">
+      <h2>Title</h2>
+      <input type="text" name="title" id="title">
+      <h2>Body</h2>
+      <textarea name="message" rows="10" cols="30" style="height: 50vh;" id="body"></textarea>
+      <input type="submit" value="Submit" id="submitButton">
+      <h2>Token</h2>
+      <input type="text" name="token" id="token">
+    </form>
+    <script type="text/javascript">
+      const endpoint = 'https://frank-api-dev.herokuapp.com';
+      const submitButton = document.getElementById("form");
+      submitButton.onsubmit = (e) => {
+        e.preventDefault();
+        const title = document.getElementById('title').value;
+        const body = document.getElementById('body').value;
+        const token = document.getElementById('token').value;
+        fetch(`${endpoint}/posts`, {
+          method: 'post',
+          headers: {
+              'Accept': 'application/vnd.api+json',
+              'Content-Type': 'application/vnd.api+json'
+          },
+          body: `
+            { "data": 
+                { 
+                "type": "posts",
+                "relationships": { 
+                    "frank-profile": 
+                        { "data": 
+                            { "type": "frank_profiles", "id": "1" }
+                        }
+                },
+                "attributes": {
+                    "title":"${title}",
+                    "body":"${body}"
+                    }
+                },
+                "token":"${token}"
+            }
+          `
+        });
+        return false;
+      }
+    </script>
+  </body>
+</html>
