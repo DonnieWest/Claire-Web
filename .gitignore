@@ -5,9 +5,6 @@ bower_components
 test/bower_components
 .idea/
 *.log
-aws-credentials.json
-.awspublish-treasury.love
-.awspublish-www.treasury.love
-dist
-aws-credentials-me.json
-.awspublish-me.treasury.love
+aws-credentials*.json
+dist/
+.awspublish*.love
