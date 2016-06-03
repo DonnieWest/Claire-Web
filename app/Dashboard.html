@@ -1,47 +1,138 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Love Treasury Dashboard</title>
-    <meta name="description" content="Love Treasury Dashboard">
-    <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.1/es6-shim.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <title>Love Treasury Dashboard</title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+  <meta name="viewport" content="width=device-width"/>
+  <meta name="description" content="Love Treasury Dashboard">
+  <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
+  <script>tinymce.init({selector: 'textarea'});</script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.1/es6-shim.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+  <link
+    href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+        rel='stylesheet' type='text/css'>
 
-  <body>
-    <h1>Love Treasury Dashboard</h1>
-    <form style="display: flex; flex-direction: column;" id="form">
-      <h2>Title</h2>
-      <input type="text" name="title" id="title">
-      <h2>Body</h2>
-      <textarea name="message" rows="10" cols="30" style="height: 50vh;" id="body"></textarea>
-      <input type="submit" value="Submit" id="submitButton">
-      <h2>Token</h2>
-      <input type="text" name="token" id="token">
-    </form>
-    <script type="text/javascript">
-      const endpoint = 'https://frank-api-dev.herokuapp.com';
-      const submitButton = document.getElementById("form");
-      submitButton.onsubmit = (e) => {
-        e.preventDefault();
-        const title = document.getElementById('title').value;
-        const body = document.getElementById('body').value;
-        const token = document.getElementById('token').value;
-        fetch(`${endpoint}/posts`, {
-          method: 'post',
-          headers: {
-              'Accept': 'application/vnd.api+json',
-              'Content-Type': 'application/vnd.api+json'
-          },
-          body: `
-            { "data": 
-                { 
+
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <link href="/bower_components/toastr/toastr.min.css" media="all" rel="stylesheet" type="text/css"/>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+
+  <!-- build:css styles/gsdk-base.css -->
+  <!-- bower:css -->
+  <link href="styles/gsdk-base.css" rel="stylesheet"/>
+  <!-- endbower -->
+  <!-- endbuild -->
+</head>
+
+<body id="page-top">
+
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand page-scroll" href="index.html#page-top">♥ Treasury</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a class="page-scroll" href="journal.html">Journal</a>
+        </li>
+        <li>
+          <a class="page-scroll" href="index.html#about">About</a>
+        </li>
+        <li>
+          <a class="page-scroll" href="index.html#services">Services</a>
+        </li>
+        <li>
+          <a class="page-scroll" href="index.html#privacy">Privacy</a>
+        </li>
+        <li>
+          <a class="page-scroll" href="index.html#contact">Contact</a>
+        </li>
+        <li>
+          <a class="page-scroll" id="profile_link" href="Account.html">Account</a>
+        </li>
+        <li>
+          <a class="page-scroll" id="logout_link" style="display: none" href="logout.html">Logout</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+
+<div class="jumbotron">
+  <!--   Big container   -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <h1>Write Blog Entry</h1>
+
+        <form id="new-article">
+          <div class="form-group">
+            <label for="title">Post Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Post title">
+          </div>
+          <div class="form-group">
+            <label for="body">Body</label>
+            <textarea name="body" rows="30" cols="30" style="height: 40vh;" id="body"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="token">Token</label>
+              <input type="text" name="token" id="token">
+          </div>
+          <button type="submit" class="btn btn-default pull-right">Submit</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script type="text/javascript">
+  const endpoint = 'https://frank-api-dev.herokuapp.com';
+  const form = document.getElementById("new-article");
+  form.onsubmit = (e) =>
+  {
+    e.preventDefault();
+    const title = document.getElementById('title').value;
+    const body = document.getElementById('body').value;
+    const token = document.getElementById('token').value;
+    fetch(`${endpoint}/posts`, {
+      method: 'post',
+      headers: {
+        'Accept': 'application/vnd.api+json',
+        'Content-Type': 'application/vnd.api+json'
+      },
+      body: `
+            { "data":
+                {
                 "type": "posts",
-                "relationships": { 
-                    "frank-profile": 
-                        { "data": 
+                "relationships": {
+                    "frank-profile":
+                        { "data":
                             { "type": "frank_profiles", "id": "1" }
                         }
                 },
@@ -53,9 +144,39 @@
                 "token":"${token}"
             }
           `
-        });
-        return false;
-      }
-    </script>
-  </body>
+    }).then(function (response) {
+        if (response.ok) {
+          toastr.success("Blog Post " + response.statusText);
+          form.reset();
+        } else {
+          toastr.warning("There was a problem submitting the blog post : " + response.statusText);
+        }
+      })
+      .catch(function (error) {
+        console.log("There was an error - " + error);
+        toastr.error(error.text);
+      });
+  }
+</script>
+
+<script>
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-bottom-left",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
+</script>
+</body>
 </html>
