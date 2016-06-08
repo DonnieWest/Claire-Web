@@ -41,7 +41,7 @@ $(document).ready(function () {
   // handle input changes for email address
   $("input[name=email]").focusout(function () {
     const email = $(this).val();
-    if (email != null) {
+    if (email != null && email.length > 0) {
       handleExistingProfile(email);
     }
   });
@@ -55,7 +55,6 @@ $(document).ready(function () {
 function handleExistingProfile(email) {
   getProfile(email).then(function (result) {
     if (result.data.length == 1) {
-      console.log("Saving profile");
       saveProfile(result.data[0]);
     }
   }).catch(function (result) {
@@ -119,6 +118,7 @@ function setProfileLink() {
 
 // handle Profile form
 $("#profile").submit(function () {
+  event.preventDefault();
   const firstName = $(this).find('input[name="firstname"]').val();
   const lastName = $(this).find('input[name="lastname"]').val();
   const email = $(this).find('input[name="email"]').val();
@@ -130,8 +130,8 @@ $("#profile").submit(function () {
   // just finish the form and setup the partner link
   if (JSON.parse(localStorage.getItem('profile')) == null) {
     createProfile(data).then(function (result) {
-      if (result.data != null) {
-        console.log("Saving profile");
+      if (result.data.length > 0) {
+        console.log("Form submitted - saving profile");
         saveProfile(result.data);
       }
     }).catch(function (result) {
@@ -139,9 +139,9 @@ $("#profile").submit(function () {
     });
   }
 
-  /* stop form from submitting normally */
-  event.preventDefault();
-  setupPartner(partner_email);
+  if (JSON.parse(localStorage.getItem('profile')) != null) {
+    setupPartner(partner_email);
+  }
 
 });
 
@@ -205,16 +205,15 @@ function loadProfileToForm() {
 function setupPartner(email) {
   getProfile(email).then(function (result) {
     if (result.data.length == 1) {
-      console.log("Partner email found " + result);
-      localStorage.setItem('linked_profile', JSON.stringify(result.data[0].attributes));
-      localStorage.setItem('linked_profile_id', JSON.stringify(result.data[0].id));
+        localStorage.setItem("selected_partner_name", result.data[0].attributes['full-name']);
+        localStorage.setItem("selected_partner_id", result.data[0].id);
+        window.location = "AccountSuccess.html";
     } else {
-      console.log ("No partner email found. Oops " + email);
+        console.log ("No partner email found. Oops " + email);
     }
   }).catch(function (result) {
-    console.log("Promise failed " + result);
+        console.log("Promise failed " + result);
   });
-  window.location = "AccountSuccess.html";
 }
 
 /**
@@ -234,7 +233,6 @@ function getProfile(email) {
       },
       dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
     }).success(function (json) {
-      console.log("success - getProfile by email " + email);
       resolve(json);
     }).error = reject;
   });

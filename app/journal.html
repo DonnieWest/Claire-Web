@@ -150,6 +150,21 @@
                         <input id="rating" type="number" class="rating" data-size="sm" min=0 max=5 step=1 required>
                       </div>
                     </div>
+
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <h5>Leave Entry for:</h5>
+                      <div id="partners_div">
+                          <div class="dropup">
+                              <button class="btn btn-info dropdown-toggle" type="button" id="partner_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Add Partner
+                                  <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" id="partner_dropdown_list">
+                              </ul>
+                          </div>
+                      </div>
+                    </div>
+                      <input type="hidden" name="selected_partner_id" id="selected_partner_id" required>
                   </div>
 
                 </div>
@@ -164,6 +179,41 @@
                 <div class="clearfix"></div>
               </div>
             </form>
+
+              <div class="modal fade">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          <form id="form_add_partner" data-async method="GET" action="/frank-profiles">
+                              <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                  <h4 class="modal-title">Add partner</h4>
+                              </div>
+                              <div class="modal-body">
+                                  <div class="row">
+                                      <div class="col-sm-10 col-sm-offset-1">
+                                          <div class="form-group">
+                                              <label>Partner's Email
+                                                  <small>(required)</small>
+                                              </label>
+                                              <input name="email" type="email" class="form-control" placeholder="email address">
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-sm-10 col-sm-offset-1">
+                                        <div id="errors" class="alert alert-warning" role="alert"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Save changes</button>
+                              </div>
+                          </form>
+                      </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+
           </div>
         </div> <!-- wizard container -->
       </div>
