@@ -9,10 +9,79 @@ if (window.location.hostname === "localhost") {
 }
 
 $(document).ready(function () {
-  checkForUpgrade();
-  checkForProfile();
-  setProfileLink();
+    checkForUpgrade();
+    checkForProfile();
+    setProfileLink();
+    setupPartnerDropDown();
 });
+
+/**
+ * establishes the dropdown menu on the Journal Entry page.
+ * if any partners are already linked, display those partners in the menu.
+ */
+function setupPartnerDropDown()
+{
+    const linked_name = localStorage.getItem('selected_partner_name');
+    const linked_id = localStorage.getItem('selected_partner_id');
+    if (linked_id && linked_name != null) {
+        $("#partner_dropdown:first-child").html("<span class=\"caret\"></span> " + linked_name).val(linked_id);
+        $("#selected_partner_id").val(linked_id);
+        $("#partner_dropdown_list").append(
+            "<li><a id=\"" + linked_id + "\" href=\"#\">" + linked_name + "</a></li>" +
+            "<li role=\"separator\" class=\"divider\"></li>"
+        )
+    }
+
+    $("#partner_dropdown_list").append("<li><a href=\"#\">Add New Partner</a></li>");
+
+    // set the selected partner to the displayed value in the dropdown menu.
+    $(".dropdown-menu li a").click(function(){
+        const val = $(this).text();
+        if (val == "Add New Partner") {
+            $('.modal').modal('show');
+            const $form = $('form[data-async]');
+            $form.trigger("reset");
+            $('#errors').empty().hide();
+            $form.submit(function(event) {
+                event.preventDefault();
+
+                const $target = $($form.attr('data-target'));
+                const email = $form.find('input[name="email"]').val();
+
+                $.ajax({
+                    type: 'get',
+                    url: apiDomainURL + '/frank-profiles?filter[email]=' + email,
+                    headers: {
+                        Accept: 'application/vnd.api+json',
+                        'Content-Type': 'application/vnd.api+json'
+                    },
+                    success: function(data, status) {
+                        if (status !== "success") {
+                            $('#errors').empty().append("There were errors.").show();
+                        }
+                        if (data.data.length == 0) {
+                            $('#errors').empty().append("No matching email found").show();
+                        } else {
+                            const fullName = data.data[0].attributes['full-name'];
+                            const partnerID = data.data[0].id;
+                            localStorage.setItem("selected_partner_name", fullName);
+                            localStorage.setItem("selected_partner_id", partnerID);
+                            $("#selected_partner_id").val(partnerID);
+                            $("#partner_dropdown:first-child").html("<span class=\"caret\"></span> " + fullName).val(partnerID);
+                            $('#errors').empty().append("Success!").show();
+                        }
+                    }
+                });
+            });
+        } else {
+            // get the value of the chosen partner and set the form value.
+            localStorage.setItem("selected_partner_name", $(this).text());
+            localStorage.setItem("selected_partner_id", $(this).attr('id'));
+            $("#selected_partner_id").val($(this).attr('id'));
+            $("#partner_dropdown:first-child").html("<span class=\"caret\"></span> " + $(this).text()).val($(this).attr('id'));
+        }
+    });
+}
 
 /**
  * set the profile name in the Nav bar
@@ -28,7 +97,7 @@ function setProfileLink() {
 function checkForProfile()
 {
   const profile = JSON.parse(localStorage.getItem('profile'));
-  if (profile != null || profile.length >= 0) {
+  if (profile != null && profile.length >= 0) {
     var path = window.location.pathname;
     if (path.indexOf("journal.html") == -1 && path.indexOf("html") == -1) {
       window.location = "journal.html";
@@ -53,6 +122,11 @@ function checkForUpgrade()
 
 $('#entry').submit(function () {
 
+    /* stop form from submitting normally */
+    event.preventDefault();
+    const linked_id = $("#selected_partner_id").val();
+    const profile_id = JSON.parse(localStorage.getItem('profile_id'));
+
   // users do not like to see a rating of zero.
   // setting this to null so that the averages are not impacted.
   var rating = $('#rating').val();
@@ -67,8 +141,12 @@ $('#entry').submit(function () {
     description += "\r\n";
   });
 
-  const profile_id = JSON.parse(localStorage.getItem('profile_id'));
-  const linked_id = JSON.parse(localStorage.getItem('linked_profile_id'));
+    // force the user to choose a partner
+    if (linked_id == null) {
+        toastr.info("You must choose a partner");
+        return;
+    }
+
   var data = '{ "data":' +
     '{ "type": "frank-entries","relationships": {' +
     '"frank-profile":{ "data":{ "type": "frank-profiles", "id": "' + profile_id + '" }}},' +
@@ -92,7 +170,4 @@ $('#entry').submit(function () {
     console.log(json);
     toastr["error"]("There was a problem.");
   });
-
-  /* stop form from submitting normally */
-  event.preventDefault();
 });
