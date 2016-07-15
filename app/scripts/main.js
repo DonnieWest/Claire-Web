@@ -50,7 +50,7 @@ function setupPartnerDropDown()
 
                 $.ajax({
                     type: 'get',
-                    url: apiDomainURL + '/frank-profiles?filter[email]=' + email,
+                    url: apiDomainURL + '/profiles?filter[email]=' + email,
                     headers: {
                         Accept: 'application/vnd.api+json',
                         'Content-Type': 'application/vnd.api+json'
@@ -148,8 +148,8 @@ $('#entry').submit(function () {
     }
 
   var data = '{ "data":' +
-    '{ "type": "frank-entries","relationships": {' +
-    '"frank-profile":{ "data":{ "type": "frank-profiles", "id": "' + profile_id + '" }}},' +
+    '{ "type": "entries","relationships": {' +
+    '"profile":{ "data":{ "type": "profiles", "id": "' + profile_id + '" }}},' +
     '"attributes": {"received":"true","private":"false","note":' + JSON.stringify(description)
     + ', "rating":' + rating + ',"linked-profile-id":' + linked_id + '}}}';
 

@@ -123,7 +123,7 @@ $("#profile").submit(function () {
   const lastName = $(this).find('input[name="lastname"]').val();
   const email = $(this).find('input[name="email"]').val();
   const partner_email = $(this).find('input[name="partner_email"]').val();
-  const data = '{"data": {"type":"frank-profiles", "attributes":{"firstname":"' + firstName + '", "lastname":"' + lastName +
+  const data = '{"data": {"type":"profiles", "attributes":{"firstname":"' + firstName + '", "lastname":"' + lastName +
     '", "email":"' + email + '", "linked-email":"' + partner_email +'"}}}';
 
   // if we have a local profile, do not create the profile.
@@ -155,7 +155,7 @@ function createProfile(data) {
   return new Promise(function (resolve, reject) {
     $.ajax({
       type: "post",
-      url: apiDomainURL + '/frank-profiles', //submits it to the given url of the form
+      url: apiDomainURL + '/profiles', //submits it to the given url of the form
       data: data,
       headers: {
         Accept: 'application/vnd.api+json',
@@ -226,7 +226,7 @@ function getProfile(email) {
   return new Promise(function (resolve, reject) {
     $.ajax({
       type: 'get',
-      url: apiDomainURL + '/frank-profiles?filter[email]=' + email,
+      url: apiDomainURL + '/profiles?filter[email]=' + email,
       headers: {
         Accept: 'application/vnd.api+json',
         'Content-Type': 'application/vnd.api+json'
@@ -248,7 +248,7 @@ function getProfileById(id) {
   return new Promise(function (resolve, reject) {
     $.ajax({
       type: 'get',
-      url: apiDomainURL + '/frank-profiles/' + id,
+      url: apiDomainURL + '/profiles/' + id,
       headers: {
         Accept: 'application/vnd.api+json',
         'Content-Type': 'application/vnd.api+json'
