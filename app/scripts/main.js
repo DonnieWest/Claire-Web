@@ -3,7 +3,7 @@ var version = 1;
 
 var apiDomainURL = "";
 if (window.location.hostname === "localhost") {
-  apiDomainURL = "http://localhost:3000";
+  apiDomainURL = "https://frank-api-dev.herokuapp.com";
 } else {
   apiDomainURL = "https://frank.treasury.love";
 }
@@ -126,6 +126,7 @@ $('#entry').submit(function () {
     event.preventDefault();
     const linked_id = $("#selected_partner_id").val();
     const profile_id = JSON.parse(localStorage.getItem('profile_id'));
+    $(this).find("input[type=submit]:focus").attr("disabled", "true");
 
   // users do not like to see a rating of zero.
   // setting this to null so that the averages are not impacted.
@@ -163,11 +164,11 @@ $('#entry').submit(function () {
     },
     dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
   }).success(function (json) {
-    console.log("JSON success response", json);
-    toastr["success"]("Successfully saved entry");
+      $(this).find("input[type=submit]:focus").prop('disabled', false);
+      toastr["success"]("Successfully saved entry");
     $('#entry').trigger("reset");
   }).error(function (json) {
-    console.log(json);
-    toastr["error"]("There was a problem.");
+      $(this).find("input[type=submit]:focus").prop('disabled', false);
+      toastr["error"]("There was a problem.");
   });
 });

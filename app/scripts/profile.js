@@ -3,7 +3,7 @@ var version = 1;
 
 var apiDomainURL = "";
 if (window.location.hostname === "localhost") {
-  apiDomainURL = "http://localhost:3000";
+  apiDomainURL = "https://frank-api-dev.herokuapp.com";
 } else {
   apiDomainURL = "https://frank.treasury.love";
 }
