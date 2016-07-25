@@ -97,7 +97,7 @@ function setProfileLink() {
 function checkForProfile()
 {
   const profile = JSON.parse(localStorage.getItem('profile'));
-  if (profile != null && profile.length >= 0) {
+  if (profile != null) {
     var path = window.location.pathname;
     if (path.indexOf("journal.html") == -1 && path.indexOf("html") == -1) {
       window.location = "journal.html";
